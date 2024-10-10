@@ -11,6 +11,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --font-league-gothic: "League Gothic", sans-serif;
   }
 }
 
@@ -24,4 +25,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.font-league-gothic {
+  font-family: var(--font-league-gothic);
 }

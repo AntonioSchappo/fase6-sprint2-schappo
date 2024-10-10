@@ -1,100 +1,150 @@
+"use client"
+
 import Image from "next/image";
+import Link from "next/link";
+import React from "react";
+import CountUp from 'react-countup';
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="h-screen w-screen overflow-y-auto flex flex-col justify-between relative">
+      <header className="absolute top-0 left-0 w-full bg-white/10 backdrop-blur-sm z-20 p-4">
+        <div className="container mx-auto flex justify-between items-center">
+          <Image
+            src="/assets/images/fome-zero-logo.png"
+            width={53}
+            height={58}
+            alt="Fome Zero"
+          />
+          <div>
+            <Link href="/doar">
+              <button className="bg-[#FF9800] hover:bg-[#C26100] text-white font-bold py-2 px-6 rounded mr-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+                Doar Agora
+              </button>
+            </Link>
+            <Link href="/ong">
+              <button className="border font-bold border-[#FF9800] text-[#FF9800] py-2 px-6 rounded hover:border-[#C26100] hover:text-[#C26100] transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+                Área da ONG
+              </button>
+            </Link>
+          </div>
+        </div>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <main className="flex-1 flex justify-center items-center relative z-10 h-[700px] pt-16 pb-20">
+        <div
+          className="absolute inset-0 bg-cover z-0"
+          style={{
+            backgroundImage: "url('/assets/images/home-lading-page.jpg')",
+          }}
+        />
+        <div className="container mx-auto text-left py-20 text-white relative z-10">
+          <h2 className="text-6xl font-bold mb-4 max-w-[728px]">
+            Desperdício Zero,{" "}
+            <span className="text-[#FF9800]">Solidariedade Máxima:</span>{" "}
+            Compartilhe o que Sobra
+          </h2>
+          <p className="text-lg mb-8 max-w-[728px]">
+            Junte-se a nós para levar alimentos a quem precisa e fazer a
+            diferença na comunidade. Seu negócio pode alimentar milhares.
+          </p>
+          <div>
+            <Link href="/doar">
+              <button className="bg-[#FF9800] hover:bg-[#C26100] text-white font-bold py-2 px-6 rounded mr-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+                Doar Agora
+              </button>
+            </Link>
+            <Link href="/ong">
+              <button className="border font-bold border-[#FF9800] text-[#FF9800] py-2 px-6 rounded hover:border-[#C26100] hover:text-[#C26100] transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+                Área da ONG
+              </button>
+            </Link>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+
+      {/* Seção de estatísticas */}
+      <section className="bg-[#FF9800] text-white py-12 relative z-10">
+        <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center absolute -top-6 left-1/2 transform -translate-x-1/2 shadow">
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/assets/images/garfo.svg"
+            width={30}
+            height={24}
+            alt="Fome Zero"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        </div>
+        <div className="container mx-auto text-center">
+          <h3 className="text-4xl font-bold mb-12 uppercase">
+            Nossos Números
+          </h3>
+          <div className="flex justify-center gap-10 flex-wrap">
+            <div className="text-center flex flex-col items-center gap-4 p-4 border-2 w-56 rounded-3xl border-[#C26100]">
+              <Image
+                src="/assets/images/restaurante.svg"
+                width={72}
+                height={62}
+                alt="Restaurantes"
+              />
+              <p className="text-5xl font-bold font-league-gothic">
+                <CountUp end={666} duration={2} />
+              </p>
+              <p className="text-[#191919]">
+                Restaurantes <br />
+                cadastrados
+              </p>
+            </div>
+            <div className="text-center flex flex-col items-center gap-4 p-4 border-2 w-56 rounded-3xl border-[#C26100]">
+              <Image
+                src="/assets/images/supermercado.svg"
+                width={67}
+                height={62}
+                alt="Supermercado"
+              />
+              <p className="text-5xl font-bold font-league-gothic">
+                <CountUp end={153} duration={2.5} />
+              </p>
+              <p className="text-[#191919]">
+                Supermercados <br />
+                cadastrados
+              </p>
+            </div>
+            <div className="text-center flex flex-col items-center gap-4 p-4 border-2 w-56 rounded-3xl border-[#C26100]">
+              <Image
+                src="/assets/images/ong.svg"
+                width={75}
+                height={62}
+                alt="Ong"
+              />
+              <p className="text-5xl font-bold font-league-gothic">
+                <CountUp end={181} duration={3} />
+              </p>
+              <p className="text-[#191919]">
+                ONGs <br />
+                cadastradas
+              </p>
+            </div>
+            <div className="text-center flex flex-col items-center gap-4 p-4 border-2 w-56 rounded-3xl border-[#C26100]">
+              <Image
+                src="/assets/images/alimento.svg"
+                width={57}
+                height={62}
+                alt="Alimento"
+              />
+              <p className="text-5xl font-bold font-league-gothic">
+                <CountUp end={12740} duration={3.5} /><span className="text-lg">kg</span>
+              </p>
+              <p className="text-[#191919]">
+                Alimentos <br />
+                doados
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#191919] text-white py-4 text-center relative z-10">
+        <p>&copy; 2024 Fome Zero. Todos os direitos reservados.</p>
       </footer>
     </div>
   );

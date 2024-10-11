@@ -5,10 +5,12 @@ import Link from "next/link";
 import { useState } from "react";
 import NewDonationModal from "./components/newDonationModal";
 import ONGListModal from "./components/ONGListModal";
+import ViewDonationModal from "./components/viewDonationModal";
 
 const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [isONGListModalOpen, setIsONGListModalOpen] = useState(false);
+  const [isViewDonationModal, setIsViewDonationModal] = useState(false);
 
   const toggleList = () => {
     setIsDonationModalOpen(false);
@@ -99,6 +101,7 @@ const Doar = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
                   <button className="text-orange-500 hover:text-orange-600">
                     <Image
+                      onClick={() => setIsViewDonationModal(true)}
                       src="/assets/images/eye.svg"
                       height={25}
                       width={25}
@@ -126,6 +129,7 @@ const Doar = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
                   <button className="text-orange-500 hover:text-orange-600">
                     <Image
+                      onClick={() => setIsViewDonationModal(true)}
                       src="/assets/images/eye.svg"
                       height={25}
                       width={25}
@@ -153,6 +157,7 @@ const Doar = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
                   <button className="text-orange-500 hover:text-orange-600">
                     <Image
+                      onClick={() => setIsViewDonationModal(true)}
                       src="/assets/images/eye.svg"
                       height={25}
                       width={25}
@@ -173,6 +178,10 @@ const Doar = () => {
           isOpen={isONGListModalOpen}
           onClose={() => setIsONGListModalOpen(false)}
           toggleDonation={toggleDonation}
+        />
+        <ViewDonationModal
+          isOpen={isViewDonationModal}
+          onClose={() => setIsViewDonationModal(false)}
         />
       </main>
     </div>

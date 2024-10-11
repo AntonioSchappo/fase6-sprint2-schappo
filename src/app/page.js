@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
 
 export default function LandingPage() {
   return (
@@ -17,12 +17,12 @@ export default function LandingPage() {
             alt="Fome Zero"
           />
           <div>
-            <Link href="/doar">
+            <Link href="/login-helper">
               <button className="bg-[#FF9800] hover:bg-[#C26100] text-white font-bold py-2 px-6 rounded mr-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                 Doar Agora
               </button>
             </Link>
-            <Link href="/ong">
+            <Link href="/login-ong">
               <button className="border font-bold border-[#FF9800] text-[#FF9800] py-2 px-6 rounded hover:border-[#C26100] hover:text-[#C26100] transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                 Área da ONG
               </button>
@@ -49,12 +49,12 @@ export default function LandingPage() {
             diferença na comunidade. Seu negócio pode alimentar milhares.
           </p>
           <div>
-            <Link href="/doar">
+            <Link href="/login-helper">
               <button className="bg-[#FF9800] hover:bg-[#C26100] text-white font-bold py-2 px-6 rounded mr-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                 Doar Agora
               </button>
             </Link>
-            <Link href="/ong">
+            <Link href="/login-ong">
               <button className="border font-bold border-[#FF9800] text-[#FF9800] py-2 px-6 rounded hover:border-[#C26100] hover:text-[#C26100] transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
                 Área da ONG
               </button>
@@ -74,9 +74,7 @@ export default function LandingPage() {
           />
         </div>
         <div className="container mx-auto text-center">
-          <h3 className="text-4xl font-bold mb-12 uppercase">
-            Nossos Números
-          </h3>
+          <h3 className="text-4xl font-bold mb-12 uppercase">Nossos Números</h3>
           <div className="flex justify-center gap-10 flex-wrap">
             <div className="text-center flex flex-col items-center gap-4 p-4 border-2 w-56 rounded-3xl border-[#C26100]">
               <Image
@@ -131,7 +129,8 @@ export default function LandingPage() {
                 alt="Alimento"
               />
               <p className="text-5xl font-bold font-league-gothic">
-                <CountUp end={12740} duration={3.5} /><span className="text-lg">kg</span>
+                <CountUp end={12740} duration={3.5} />
+                <span className="text-lg">kg</span>
               </p>
               <p className="text-[#191919]">
                 Alimentos <br />

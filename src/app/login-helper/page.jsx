@@ -57,16 +57,14 @@ const LoginHelper = () => {
                 Esqueci minha senha
               </a>
             </div>
-            <button
-              type="submit"
-              className="bg-[#FF9800] text-white font-bold py-4 rounded-md mb-4"
-            >
-              Entrar
+            <button className="bg-[#FF9800] text-white font-bold py-4 rounded-md mb-4">
+              <Link href="/doar">Entrar</Link>
             </button>
             <div className="self-center text-[18px]">
               <Link href="/login-ong">
                 <p className="font-light">
-                  Fazer login como <span className="font-bold underline">ONG</span>
+                  Fazer login como{" "}
+                  <span className="font-bold underline">ONG</span>
                 </p>
               </Link>
             </div>

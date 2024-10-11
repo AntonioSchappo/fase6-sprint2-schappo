@@ -36,12 +36,14 @@ const Doar = () => {
               />
             </Link>
           </div>
-          <Image
-            src="/assets/images/fome-zero-logo.png"
-            width={53}
-            height={58}
-            alt="Fome Zero"
-          />
+          <Link href="/">
+            <Image
+              src="/assets/images/fome-zero-logo.png"
+              width={53}
+              height={58}
+              alt="Fome Zero"
+            />
+          </Link>
           <div>
             <Link href="/doar">
               <Image

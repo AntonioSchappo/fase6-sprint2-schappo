@@ -5,6 +5,11 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-geistsans: 'Geist Sans', sans-serif;
+}
+
+.font-geistsans {
+  font-family: var(--font-geistsans);
 }
 
 @media (prefers-color-scheme: dark) {

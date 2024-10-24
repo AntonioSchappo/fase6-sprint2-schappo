@@ -26,7 +26,10 @@ export default function NewDonationModal({ isOpen, onClose, toggleList }) {
               Tipo de alimento*
             </label>
             <select className="w-full border-gray-300 border-2 text-gray-400 rounded-md shadow-sm px-2 py-3 focus:border-orange-500 focus:ring-orange-500">
-              <option>Exemplo: Não perecível</option>
+              <option value="" disabled selected hidden>Selecione um tipo de alimento</option>
+              <option>Somente Alimentos Perecíveis</option>
+              <option>Somente Alimentos Não Perecíveis</option>
+              <option>Alimentos Perecíveis e Não Perecíveis</option>
             </select>
           </div>
 

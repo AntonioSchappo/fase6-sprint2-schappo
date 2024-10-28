@@ -2,8 +2,18 @@ import React from "react";
 import Image from "next/image";
 import photo from "../../../public/assets/images/login-helper.jpg";
 import Link from "next/link";
+import { useLogin } from "../../hooks/useLogin";
 
 const LoginHelper = () => {
+  const { Login } = useLogin();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    Login(email, password);
+  }
+
   return (
     <div className="grid grid-cols-2 bg-[#191919]">
       <Image
@@ -18,7 +28,7 @@ const LoginHelper = () => {
             Área do <br />
             estabelecimento
           </h1>
-          <form className="flex flex-col">
+          <form className="flex flex-col" onSubmit={handleLogin}>
             <label htmlFor="email" className="mb-1 font-medium">
               E-mail
             </label>
@@ -26,6 +36,7 @@ const LoginHelper = () => {
               type="text"
               name="email"
               id="email"
+              onChange={(e) => setEmail(e.target.value)}
               className="border border-solid rounded-sm p-[16px] mb-[24px]"
               placeholder="Insira seu e-mail"
             />
@@ -36,6 +47,7 @@ const LoginHelper = () => {
               type="password"
               name="password"
               id="password"
+              onChange={(e) => setPassword(e.target.value)}
               className="border border-solid rounded-sm p-[16px] mb-[24px]"
               placeholder="Insira sua senha"
             />

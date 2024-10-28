@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import photo from "../../../public/assets/images/login-helper.jpg";
 import Link from "next/link";
-import { useLogin } from "../../hooks/useLogin";
+import { useLogin } from "@/hooks/useLogin";
 
 const LoginHelper = () => {
   const { Login } = useLogin();

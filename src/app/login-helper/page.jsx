@@ -75,10 +75,10 @@ const LoginHelper = () => {
               <Link href="/doar">Entrar</Link>
             </button>
             <div className="self-center text-[18px]">
-              <Link href="/login-ong">
+              <Link href="/cadastrar-estabelecimento">
                 <p className="font-light">
-                  Fazer login como{" "}
-                  <span className="font-bold underline">ONG</span>
+                  Não possui conta?{" "}
+                  <span className="font-bold underline">Crie uma de graça</span>
                 </p>
               </Link>
             </div>

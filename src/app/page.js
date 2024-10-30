@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import CountUp from "react-countup";
+import { Button } from "@/components/Button";
 
 export default function LandingPage() {
   return (
@@ -17,16 +17,11 @@ export default function LandingPage() {
             alt="Fome Zero"
           />
           <div>
-            <Link href="/login-helper">
-              <button className="bg-[#FF9800] hover:bg-[#C26100] text-white font-bold py-2 px-6 rounded mr-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-                Doar Agora
-              </button>
-            </Link>
-            <Link href="/login-ong">
-              <button className="border font-bold border-[#FF9800] text-[#FF9800] py-2 px-6 rounded hover:border-[#C26100] hover:text-[#C26100] transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-                Área da ONG
-              </button>
-            </Link>
+            <Button
+              url="/login-estabelecimento"
+              text="Doar Agora"
+              variant="primary"
+            />
           </div>
         </div>
       </header>
@@ -49,16 +44,17 @@ export default function LandingPage() {
             diferença na comunidade. Seu negócio pode alimentar milhares.
           </p>
           <div>
-            <Link href="/login-helper">
-              <button className="bg-[#FF9800] hover:bg-[#C26100] text-white font-bold py-2 px-6 rounded mr-4 transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-                Doar Agora
-              </button>
-            </Link>
-            <Link href="/login-ong">
-              <button className="border font-bold border-[#FF9800] text-[#FF9800] py-2 px-6 rounded hover:border-[#C26100] hover:text-[#C26100] transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
-                Área da ONG
-              </button>
-            </Link>
+            <Button
+              url="/login-estabelecimento"
+              text="Doar Agora"
+              variant="primary"
+            />
+
+            <Button
+              url="/login-estabelecimento"
+              text="Área da Ong"
+              variant="outline"
+            />
           </div>
         </div>
       </main>

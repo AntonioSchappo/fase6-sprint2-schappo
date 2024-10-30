@@ -1,14 +1,15 @@
 import Image from "next/image";
-import photo from "../../../public/assets/images/login-helper.jpg";
+import photo from "@/public/assets/images/login-helper.jpg";
 import Link from "next/link";
 import React from "react";
+import { Button } from "@/components/Button";
 
 export default function CadastrarEstabelecimento() {
   return (
-    <div className="h-screen w-screen overflow-y-auto grid grid-cols-2 justify-between bg-[#191919]">
+    <div className="h-screen w-screen overflow-y-auto grid grid-cols-2 justify-between bg-[#191919] font-nunito-sans">
       <div className="text-[#0D0E30] flex justify-center items-center">
         <div className="w-[488px] h-fit bg-white rounded-md p-9">
-          <h1 className="text-[40px] font-bold leading-none">
+          <h1 className="text-[40px] font-bold leading-none ">
             Cadastrar
             <br />
             estabelecimento
@@ -72,16 +73,11 @@ export default function CadastrarEstabelecimento() {
               className="h-14 w-auto p-4 border border-solid rounded-md"
             />
 
-            <button
-              type="submit"
-              className="w-[416px] h-[52px] bg-[#FF9800] text-white font-bold rounded-md mt-4 mb-4"
-            >
-              Entrar
-            </button>
+          <Button url="/login-estabelecimento" text="Cadastrar" variant="primary" className="w-full mt-6"/>
           </form>
-          <p className="text-center text-[18px]">
+          <p className="text-center mt-4">
             Já possui uma conta?{" "}
-            <Link href="/login-helper">
+            <Link href="/login-estabelecimento">
               <span className="font-bold underline">Faça login</span>
             </Link>
           </p>

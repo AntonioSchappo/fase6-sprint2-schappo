@@ -1,3 +1,5 @@
+"use client"
+
 export const useLocalStorage = (key) => {
 
   const setItem = (value) => {
@@ -7,6 +9,16 @@ export const useLocalStorage = (key) => {
         console.error(error);
     }
   };
+
+  const setItems = (value) => {
+    try {
+      const items = getItem(key) || [];
+      items.push(value);
+      setItem(items);
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const getItem = () => {
     try {
@@ -25,5 +37,5 @@ export const useLocalStorage = (key) => {
     }
   }
 
-  return { setItem, getItem, removeItem };
+  return { setItem, setItems, getItem, removeItem };
 }

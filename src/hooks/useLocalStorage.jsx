@@ -10,6 +10,16 @@ export const useLocalStorage = (key) => {
     }
   };
 
+  const setItems = (value) => {
+    try {
+      const items = getItem(key) || [];
+      items.push(value);
+      setItem(items);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const getItem = () => {
     try {
         const item = window.localStorage.getItem(key);
@@ -27,5 +37,5 @@ export const useLocalStorage = (key) => {
     }
   }
 
-  return { setItem, getItem, removeItem };
+  return { setItem, setItems, getItem, removeItem };
 }

@@ -12,7 +12,7 @@ export const useLocalStorage = (key) => {
 
   const setItems = (value) => {
     try {
-      const items = getItem(key) || [];
+      const items = JSON.parse(getItem(key)) || [];
       items.push(value);
       setItem(items);
     } catch (error) {

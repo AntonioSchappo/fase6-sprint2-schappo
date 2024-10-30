@@ -1,4 +1,6 @@
 import localFont from "next/font/local";
+import LoginProvider from "@/contexts/LoginContext";
+import DonateProvider from "@/contexts/DonateContext";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -28,7 +30,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${leagueGothic.variable} antialiased`}
       >
-        {children}
+      <LoginProvider>
+        <DonateProvider>
+          {children}
+        </DonateProvider>
+      </LoginProvider> 
       </body>
     </html>
   );

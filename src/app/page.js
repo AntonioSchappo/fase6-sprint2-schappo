@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import CountUp from "react-countup";
 import { Button } from "@/components/Button";
+import Link from "next/link";
 
 export default function LandingPage() {
   return (
@@ -17,11 +18,9 @@ export default function LandingPage() {
             alt="Fome Zero"
           />
           <div>
-            <Button
-              url="/login-estabelecimento"
-              text="Doar Agora"
-              variant="primary"
-            />
+            <Link href="/login-estabelecimento">
+              <Button text="Doar Agora" variant="primary" />
+            </Link>
           </div>
         </div>
       </header>
@@ -44,17 +43,13 @@ export default function LandingPage() {
             diferença na comunidade. Seu negócio pode alimentar milhares.
           </p>
           <div>
-            <Button
-              url="/login-estabelecimento"
-              text="Doar Agora"
-              variant="primary"
-            />
+            <Link href="/login-estabelecimento">
+              <Button text="Doar Agora" variant="primary" />
+            </Link>
 
-            <Button
-              url="/login-estabelecimento"
-              text="Área da Ong"
-              variant="outline"
-            />
+            <Link href="/login-ong">
+              <Button text="Área da Ong" variant="outline" />
+            </Link>
           </div>
         </div>
       </main>

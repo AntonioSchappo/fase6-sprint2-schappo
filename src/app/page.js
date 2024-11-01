@@ -1,12 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import CountUp from "react-countup";
 import { Button } from "@/components/Button";
 import Link from "next/link";
+import { useLogin } from "@/hooks/useLogin";
 
 export default function LandingPage() {
+  //todo: não funciona
+  const { isBusinessLoggedIn } = useLogin();
+  const doarRef = isBusinessLoggedIn ? "/doar" : "/login-estabelecimento";
   return (
     <div className="h-screen w-screen overflow-y-auto flex flex-col justify-between relative">
       <header className="absolute top-0 left-0 w-full bg-white/10 backdrop-blur-sm z-20 p-4">
@@ -18,7 +22,7 @@ export default function LandingPage() {
             alt="Fome Zero"
           />
           <div>
-            <Link href="/login-estabelecimento">
+            <Link as="/doar" href={doarRef}>
               <Button text="Doar Agora" variant="primary" />
             </Link>
           </div>

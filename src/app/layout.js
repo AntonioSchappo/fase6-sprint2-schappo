@@ -1,20 +1,16 @@
 import localFont from "next/font/local";
 import LoginProvider from "@/contexts/LoginContext";
 import DonateProvider from "@/contexts/DonateContext";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const nunito = Nunito({
+  subsets: ["latin"],
+  variable: "--font-nunito-sans",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
 const leagueGothic = localFont({
-  src: "./fonts/LeagueGothic.ttf",
+  src: "../fonts/LeagueGothic.ttf",
   variable: "--font-league-gothic",
   weight: "400",
 });
@@ -26,15 +22,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="pt-br">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${leagueGothic.variable} antialiased`}
+        className={`${nunito.variable} ${leagueGothic.variable} antialiased`}
       >
-      <LoginProvider>
-        <DonateProvider>
-          {children}
-        </DonateProvider>
-      </LoginProvider> 
+        <LoginProvider>
+          <DonateProvider>{children}</DonateProvider>
+        </LoginProvider>
       </body>
     </html>
   );

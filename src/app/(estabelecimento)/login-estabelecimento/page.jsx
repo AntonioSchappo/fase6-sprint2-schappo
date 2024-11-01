@@ -1,10 +1,11 @@
 "use client"
 import React from "react";
 import Image from "next/image";
-import photo from "../../../public/assets/images/login-helper.jpg";
+import photo from "@/public/assets/images/login-helper.jpg";
 import Link from "next/link";
 import { useLogin } from "@/hooks/useLogin";
 import { useState } from "react";
+import { Button } from "@/components/Button";
 
 const LoginHelper = () => {
   const { Login } = useLogin();
@@ -17,7 +18,7 @@ const LoginHelper = () => {
   }
 
   return (
-    <div className="grid grid-cols-2 bg-[#191919]">
+    <div className="grid grid-cols-2 bg-[#191919] font-nunito-sans">
       <Image
         src={photo}
         alt="Login Helper Image"
@@ -71,10 +72,8 @@ const LoginHelper = () => {
                 Esqueci minha senha
               </a>
             </div>
-            <button className="bg-[#FF9800] text-white font-bold py-4 rounded-md mb-4">
-              <Link href="/doar">Entrar</Link>
-            </button>
-            <div className="self-center text-[18px]">
+            <Button url="/doar" text="Entrar" variant="primary" className="w-full"/>
+            <div className="self-center mt-4">
               <Link href="/cadastrar-estabelecimento">
                 <p className="font-light">
                   Não possui conta?{" "}

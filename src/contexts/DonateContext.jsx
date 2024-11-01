@@ -2,7 +2,7 @@
 
 import { createContext } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from "uuid";
 
 export const DonateContext = createContext({});
 

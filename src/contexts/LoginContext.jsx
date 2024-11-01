@@ -1,12 +1,13 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { v4 as uuid } from "uuid";
 
 export const LoginContext = createContext({});
 
 export default function LoginProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [businessLogged, setBusiness] = useState({});
+  const [businessLogged, setBusinessLogged] = useState({});
 
   function Login(email, password) {
     const { getItem } = useLocalStorage("businesses");
@@ -19,18 +20,22 @@ export default function LoginProvider({ children }) {
     }
 
     setIsLoggedIn(true);
-    setBusiness(businessToLog);
+    setBusinessLogged(businessToLog);
     return;
   }
 
   function Logout() {
     setIsLoggedIn(false);
-    setBusiness({});
+    setBusinessLogged({});
   }
 
+  /**
+   * @param {Institution} business
+   * @returns
+   */
   function Register(business) {
     const { getItem, setItem } = useLocalStorage("businesses");
-    const businessList = JSON.parse(getItem()) || [];
+    const businessList = getItem() || [];
 
     const bussinessExists = businessList.find((b) => b.cnpj === business.cnpj);
     if (bussinessExists) {
@@ -38,18 +43,25 @@ export default function LoginProvider({ children }) {
       return;
     }
 
-    businessList.push(business);
+    const newBusiness = {
+      ...business,
+      id: uuid(),
+    };
 
-    setItem(JSON.stringify(businessList));
-    setBusiness(business);
+    businessList.push(newBusiness);
+    setItem(businessList);
+    setBusinessLogged(business);
+
+    return true;
   }
 
-  useEffect(() => {
-    const token = window.localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = window.localStorage.getItem("token");
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //   }
+  // }, []);
+
   return (
     <LoginContext.Provider
       value={{

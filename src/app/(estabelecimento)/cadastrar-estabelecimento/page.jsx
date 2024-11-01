@@ -4,7 +4,7 @@ import CadastrarEstabelecimentoView from "./view";
 import { useLogin } from "@/hooks/useLogin";
 
 export default function CadastrarEstabelecimento() {
-  const { Register } = useLogin();
+  const { RegisterBusiness } = useLogin();
   const [institution, setInstitution] = useState({
     fantasyName: "",
     cnpj: "",
@@ -24,7 +24,7 @@ export default function CadastrarEstabelecimento() {
       password: institution.password,
     };
 
-    const wasRegistered = Register(newInstitution);
+    const wasRegistered = RegisterBusiness(newInstitution);
 
     if (wasRegistered) {
       alert("Cadastrado com sucesso");

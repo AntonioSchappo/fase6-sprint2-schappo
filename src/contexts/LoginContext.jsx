@@ -6,12 +6,15 @@ import { v4 as uuid } from "uuid";
 export const LoginContext = createContext({});
 
 export default function LoginProvider({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isBusinessLoggedIn, setIsBusinessLoggedIn] = useState(false);
   const [businessLogged, setBusinessLogged] = useState({});
+  const [isOngLoggedIn, setIsOngLoggedIn] = useState(false);
+  const [ongLogged, setOngLogged] = useState({});
 
-  function Login(email, password) {
+  function LoginBusiness(email, password) {
     const { getItem } = useLocalStorage("businesses");
-    const businessList = JSON.parse(getItem());
+    const { setItem } = useLocalStorage("businessLogged");
+    const businessList = getItem() || [];
     const businessToLog = businessList.find((b) => b.email === email);
 
     if (!businessToLog || businessToLog.password !== password) {
@@ -19,21 +22,25 @@ export default function LoginProvider({ children }) {
       return;
     }
 
-    setIsLoggedIn(true);
+    setIsBusinessLoggedIn(true);
     setBusinessLogged(businessToLog);
-    return;
+    setItem(businessToLog);
+    return isBusinessLoggedIn;
   }
 
-  function Logout() {
-    setIsLoggedIn(false);
+  function LogoutBusiness() {
+    const { removeItem } = useLocalStorage("businessLogged");
+
+    setIsBusinessLoggedIn(false);
     setBusinessLogged({});
+    removeItem();
   }
 
   /**
    * @param {Institution} business
    * @returns
    */
-  function Register(business) {
+  function RegisterBusiness(business) {
     const { getItem, setItem } = useLocalStorage("businesses");
     const businessList = getItem() || [];
 
@@ -50,26 +57,34 @@ export default function LoginProvider({ children }) {
 
     businessList.push(newBusiness);
     setItem(businessList);
-    setBusinessLogged(business);
 
     return true;
   }
 
-  // useEffect(() => {
-  //   const token = window.localStorage.getItem("token");
-  //   if (token) {
-  //     setIsLoggedIn(true);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const token = window.localStorage.getItem("businessLogged");
+    if (token) {
+        setIsBusinessLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const token =  window.localStorage.getItem("ongLogged");
+    if (token) {
+        setIsOngLoggedIn(true);
+    }
+  }, []);
 
   return (
     <LoginContext.Provider
       value={{
         business: businessLogged,
-        logged: isLoggedIn,
-        Login,
-        Logout,
-        Register,
+        ong: ongLogged,
+        isBusinessLoggedIn,
+        isOngLoggedIn,
+        LoginBusiness,
+        LogoutBusiness,
+        RegisterBusiness,
       }}
     >
       {children}

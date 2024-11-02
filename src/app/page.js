@@ -1,16 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import CountUp from "react-countup";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 import { useLogin } from "@/hooks/useLogin";
 
 export default function LandingPage() {
-  //todo: não funciona
-  const { isBusinessLoggedIn } = useLogin();
+  const { isBusinessLoggedIn, isOngLoggedIn } = useLogin();
   const doarRef = isBusinessLoggedIn ? "/doar" : "/login-estabelecimento";
+  const ongRef = isOngLoggedIn ? "/ong" : "/login-ong";
+
   return (
     <div className="h-screen w-screen overflow-y-auto flex flex-col justify-between relative">
       <header className="absolute top-0 left-0 w-full bg-white/10 backdrop-blur-sm z-20 p-4">
@@ -22,7 +23,7 @@ export default function LandingPage() {
             alt="Fome Zero"
           />
           <div>
-            <Link as="/doar" href={doarRef}>
+            <Link href={doarRef}>
               <Button text="Doar Agora" variant="primary" />
             </Link>
           </div>
@@ -47,18 +48,17 @@ export default function LandingPage() {
             diferença na comunidade. Seu negócio pode alimentar milhares.
           </p>
           <div>
-            <Link href="/login-estabelecimento">
+            <Link href={doarRef}>
               <Button text="Doar Agora" variant="primary" />
             </Link>
 
-            <Link href="/login-ong">
+            <Link href={ongRef}>
               <Button text="Área da Ong" variant="outline" />
             </Link>
           </div>
         </div>
       </main>
 
-      {/* Seção de estatísticas */}
       <section className="bg-[#FF9800] text-white py-12 relative z-10">
         <div className="bg-white rounded-full w-[48px] h-[48px] flex justify-center items-center absolute -top-6 left-1/2 transform -translate-x-1/2 shadow">
           <Image
@@ -136,7 +136,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-[#191919] text-white py-4 text-center relative z-10 font-nunito-sans">
         <p>&copy; 2024 Fome Zero. Todos os direitos reservados.</p>
       </footer>

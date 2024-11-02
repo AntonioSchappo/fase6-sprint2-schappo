@@ -18,7 +18,6 @@ export default function LoginOngView({ handleLogin, setEmail, setPassword }) {
               name="email"
               id="email"
               onChange={(e) => setEmail(e.target.value)}
-              className="border border-solid rounded-sm p-[16px] mb-[24px]"
               placeholder="Insira seu e-mail"
             />
 
@@ -29,7 +28,6 @@ export default function LoginOngView({ handleLogin, setEmail, setPassword }) {
               name="password"
               id="password"
               onChange={(e) => setPassword(e.target.value)}
-              className="border border-solid rounded-sm p-[16px] mb-[24px]"
               placeholder="Insira sua senha"
             />
 

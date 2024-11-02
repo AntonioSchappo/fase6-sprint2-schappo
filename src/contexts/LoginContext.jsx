@@ -79,6 +79,45 @@ export default function LoginProvider({ children }) {
     return isBusinessLoggedIn;
   }
 
+  /**
+   * @param {Ong} ong
+   * @returns
+   */
+  function RegisterOng(ong) {
+    const { getItem, setItem } = useLocalStorage("ongs");
+    const ongsLits = getItem() || [];
+
+    const cpfAlreadyRegistred = ongsLits.find(
+      (o) => o.cpfResponsible === ong.cpfResponsible
+    );
+    if (cpfAlreadyRegistred) {
+      alert("CPF já cadastrado");
+      return;
+    }
+
+    const emailAlreadyRegistred = ongsLits.find((o) => o.email === ong.email);
+    if (emailAlreadyRegistred) {
+      alert("E-mail já cadastrado");
+      return;
+    }
+
+    const nameAlreadyRegistred = ongsLits.find((o) => o.name === ong.name);
+    if (nameAlreadyRegistred) {
+      alert("Nome já cadastrado");
+      return;
+    }
+
+    const newOng = {
+      ...ong,
+      id: uuid(),
+    };
+
+    ongsLits.push(newOng);
+    setItem(ongsLits);
+
+    return true;
+  }
+
   useEffect(() => {
     const token = window.localStorage.getItem("businessLogged");
     if (token) {
@@ -104,6 +143,7 @@ export default function LoginProvider({ children }) {
         LogoutBusiness,
         RegisterBusiness,
         LoginOng,
+        RegisterOng,
       }}
     >
       {children}

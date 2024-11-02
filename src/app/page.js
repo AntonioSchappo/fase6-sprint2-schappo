@@ -78,7 +78,7 @@ export default function LandingPage() {
                 height={62}
                 alt="Restaurantes"
               />
-              <p className="text-5xl font-bold font-league-gothic">
+              <p className="text-5xl font-bold">
                 <CountUp end={666} duration={2} />
               </p>
               <p className="text-[#191919]">
@@ -93,7 +93,7 @@ export default function LandingPage() {
                 height={62}
                 alt="Supermercado"
               />
-              <p className="text-5xl font-bold font-league-gothic">
+              <p className="text-5xl font-bold">
                 <CountUp end={153} duration={2.5} />
               </p>
               <p className="text-[#191919]">
@@ -108,7 +108,7 @@ export default function LandingPage() {
                 height={62}
                 alt="Ong"
               />
-              <p className="text-5xl font-bold font-league-gothic">
+              <p className="text-5xl font-bold">
                 <CountUp end={181} duration={3} />
               </p>
               <p className="text-[#191919]">
@@ -123,7 +123,7 @@ export default function LandingPage() {
                 height={62}
                 alt="Alimento"
               />
-              <p className="text-5xl font-bold font-league-gothic">
+              <p className="text-5xl font-bold">
                 <CountUp end={12740} duration={3.5} />
                 <span className="text-lg">kg</span>
               </p>
@@ -137,7 +137,7 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#191919] text-white py-4 text-center relative z-10">
+      <footer className="bg-[#191919] text-white py-4 text-center relative z-10 font-nunito-sans">
         <p>&copy; 2024 Fome Zero. Todos os direitos reservados.</p>
       </footer>
     </div>

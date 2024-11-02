@@ -1,11 +1,14 @@
-export function Input({ ...props }) {
+import React from "react";
+import InputMask from "react-input-mask";
+
+export function Input({ mask, ...props }) {
   return (
     <>
       <label htmlFor={props.id} className="text-base mt-6 mb-2">
         {props.label}
       </label>
-      <input
-        name={props.id}
+      <InputMask
+        mask={mask}
         id={props.id}
         placeholder={props.placeholder}
         className="h-14 w-auto p-4 border border-solid rounded-md"

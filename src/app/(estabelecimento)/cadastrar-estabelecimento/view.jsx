@@ -31,15 +31,16 @@ export default function CadastrarEstabelecimentoView({
               }
             />
 
-            <Input
+            <Input 
               label="CNPJ"
               id="cnpj"
+              mask="99.999.999/9999-99"
               placeholder="Insira o CPNJ"
               required
               onChange={(e) =>
                 setInstitution({ ...institution, cnpj: e.target.value })
               }
-            />
+            /> 
 
             <Select
               label="Tipo de estabelecimento"

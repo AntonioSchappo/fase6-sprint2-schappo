@@ -1,32 +1,34 @@
 import Image from "next/image";
-import photo from "../../../public/assets/images/login-ong.png";
+import photo from "@/public/assets/images/login-ong.png";
 import Link from "next/link";
+import { Input } from "@/components/Input";
+import { Button } from "@/components/Button";
 
-export default function loginOng() {
+export default function LoginOngView({ handleLogin, setEmail, setPassword }) {
   return (
-    <div className="grid grid-cols-2 items-stretch overflow-hidden">
+    <div className="grid grid-cols-2 items-stretch overflow-hidden  font-nunito-sans">
       <div className="flex items-center justify-center text-[#191919] bg-[#191919]">
         <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px]">
           <h1 className="text-4xl mb-6 font-bold">Área da ONG</h1>
-          <form action="" className="w-full flex flex-col">
-            <label htmlFor="email" className="mb-4">
-              E-mail
-            </label>
-            <input
+          <form className="w-full flex flex-col" onSubmit={handleLogin}>
+            <Input
+              required
+              label="E-mail"
               type="text"
-              className="border border-solid rounded-sm p-[16px] mb-[24px]"
-              placeholder="Insira seu email"
+              name="email"
               id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Insira seu e-mail"
             />
 
-            <label htmlFor="password" className="mb-4">
-              Senha
-            </label>
-            <input
+            <Input
+              required
+              label="Senha"
               type="password"
-              className="border border-solid rounded-sm p-[16px] mb-[24px]"
-              placeholder="Insira sua senha"
+              name="password"
               id="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Insira sua senha"
             />
 
             <div className="flex flex-row justify-end items-center my-4">
@@ -48,18 +50,18 @@ export default function loginOng() {
               </a>
             </div>
 
-            <button
+            <Button
               type="submit"
-              className="bg-[#FF9800] text-white font-bold py-4 rounded-md mb-4"
-            >
-              Entrar
-            </button>
+              text="Entrar"
+              variant="primary"
+              className="w-full"
+            />
 
-            <div className="self-center text-[18px]">
-              <Link href="/login-helper">
+            <div className="self-center mt-4">
+              <Link href="/cadastrar-ong">
                 <p className="font-light">
-                  Fazer login como{" "}
-                  <span className="font-bold underline">estabelecimento</span>
+                  Não possui conta?{" "}
+                  <span className="font-bold underline">Crie uma de graça</span>
                 </p>
               </Link>
             </div>

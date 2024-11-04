@@ -26,6 +26,7 @@ export default function LoginEstabelecimentoView ({
           </h1>
           <form className="flex flex-col" onSubmit={handleLogin}>
             <Input
+                required
                 label="E-mail"
                 type="text"
                 name="email"
@@ -35,6 +36,7 @@ export default function LoginEstabelecimentoView ({
                 placeholder="Insira seu e-mail"
             />
             <Input
+                required
                 label="Senha"
                 type="password"
                 name="password"

@@ -8,6 +8,7 @@ export const LoginContext = createContext({});
 export default function LoginProvider({ children }) {
   const [isBusinessLoggedIn, setIsBusinessLoggedIn] = useState(false);
   const [businessLogged, setBusinessLogged] = useState({});
+
   const [isOngLoggedIn, setIsOngLoggedIn] = useState(false);
   const [ongLogged, setOngLogged] = useState({});
 
@@ -61,17 +62,73 @@ export default function LoginProvider({ children }) {
     return true;
   }
 
+  function LoginOng(email, password) {
+    const { getItem } = useLocalStorage("ongs");
+    const { setItem } = useLocalStorage("ongLogged");
+    const ongsList = getItem() || [];
+    const ongToLog = ongsList.find((o) => o.email === email);
+
+    if (!ongToLog || ongToLog.password !== password) {
+      alert("E-mail e/ou senha incorretos");
+      return;
+    }
+
+    setIsOngLoggedIn(true);
+    setOngLogged(ongToLog);
+    setItem(ongToLog);
+    return isBusinessLoggedIn;
+  }
+
+  /**
+   * @param {Ong} ong
+   * @returns
+   */
+  function RegisterOng(ong) {
+    const { getItem, setItem } = useLocalStorage("ongs");
+    const ongsLits = getItem() || [];
+
+    const cpfAlreadyRegistred = ongsLits.find(
+      (o) => o.cpfResponsible === ong.cpfResponsible
+    );
+    if (cpfAlreadyRegistred) {
+      alert("CPF já cadastrado");
+      return;
+    }
+
+    const emailAlreadyRegistred = ongsLits.find((o) => o.email === ong.email);
+    if (emailAlreadyRegistred) {
+      alert("E-mail já cadastrado");
+      return;
+    }
+
+    const nameAlreadyRegistred = ongsLits.find((o) => o.name === ong.name);
+    if (nameAlreadyRegistred) {
+      alert("Nome já cadastrado");
+      return;
+    }
+
+    const newOng = {
+      ...ong,
+      id: uuid(),
+    };
+
+    ongsLits.push(newOng);
+    setItem(ongsLits);
+
+    return true;
+  }
+
   useEffect(() => {
     const token = window.localStorage.getItem("businessLogged");
     if (token) {
-        setIsBusinessLoggedIn(true);
+      setIsBusinessLoggedIn(true);
     }
   }, []);
 
   useEffect(() => {
-    const token =  window.localStorage.getItem("ongLogged");
+    const token = window.localStorage.getItem("ongLogged");
     if (token) {
-        setIsOngLoggedIn(true);
+      setIsOngLoggedIn(true);
     }
   }, []);
 
@@ -85,6 +142,8 @@ export default function LoginProvider({ children }) {
         LoginBusiness,
         LogoutBusiness,
         RegisterBusiness,
+        LoginOng,
+        RegisterOng,
       }}
     >
       {children}

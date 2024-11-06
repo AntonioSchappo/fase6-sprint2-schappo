@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 // PARA CANCELAR A DOAÇÃO
 export default function UpdateDonation({ isOpen, onClose }) {
   if (!isOpen) return null;
@@ -11,79 +13,62 @@ export default function UpdateDonation({ isOpen, onClose }) {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="bg-white rounded-lg w-full max-w-lg p-8 relative">
+      <div className="bg-white rounded-[24px] w-[678px] p-12 relative">
         <button
-          className="absolute top-4 right-4 text-gray-400 text-2xl hover:text-gray-700"
+          className="absolute top-4 right-4 text-gray-400 text-2xl hover:text-[#FF9800]"
           onClick={onClose}
         >
           &times;
         </button>
-        <h2 className="text-xl font-semibold text-orange-500 mb-4 text-center">
+        <h2 className="text-[32px] font-bold text-[#FF9800] mb-4 text-center">
           Atualizar doação
         </h2>
 
-        <div className="mb-4">
-          <label className="block text-sm font-semibold text-black mb-1">
-            Tipo de alimento
-          </label>
-          <input
-            type="text"
-            value="Perecível"
-            readOnly
-            className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700"
+        <div className="flex flex-col items-center">
+          <Image
+            src="/assets/images/update-donation.png"
+            height={120}
+            width={183}
+            alt="doação de comida em desenho"
+            className="text-center mb-8"
           />
-        </div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-semibold text-black mb-1">
-            Peso total
-          </label>
-          <input
-            type="text"
-            value="4kg"
-            readOnly
-            className="w-full px-3 py-2 border border-gray-300 rounded-md text-gray-700"
-          />
-        </div>
+          <div className="flex items-center gap-3">
+            <div className="circulo-status w-[50px] h-[50px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
 
-        <div className="mb-4 flex items-center space-x-2">
-          <label className="block text-sm font-semibold text-black mb-1 flex-grow">
-            Lista de alimentos
-          </label>
-          <input
-            type="text"
-            value="alimentos-doacao.xls"
-            readOnly
-            className="flex-grow px-3 py-2 border border-gray-300 rounded-md text-gray-700"
-          />
-          <button className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600">
-            Baixar
-          </button>
-        </div>
+            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
+            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
+            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
 
-        <div className="mb-4">
-          <label className="block text-sm font-semibold text-black mb-1">
-            Horário da doação*
-          </label>
-          <div className="flex space-x-2">
-            <input
-              type="date"
-              value="2024-10-15"
-              className="w-1/2 px-3 py-2 border border-gray-300 rounded-md text-gray-700"
-              readOnly
-            />
-            <input
-              type="time"
-              value="15:30"
-              className="w-1/2 px-3 py-2 border border-gray-300 rounded-md text-gray-700"
-              readOnly
-            />
+            <div className="circulo-status w-[50px] h-[50px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
+
+            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800]"></div>
+            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800]"></div>
+            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800]"></div>
+
+            <div className="circulo-status w-[50px] h-[50px] rounded-full border-2 border-[#FF9800]"></div>
+          </div>
+          <div className="w-[384px] flex items-center text-black justify-between mb-8">
+            <p className="">Em aberto</p>
+            <p className="">Processando</p>
+            <p className="">Concluído</p>
           </div>
         </div>
 
-        <div className="mt-6 text-right">
-          <button className="text-red-600 hover:text-red-700" onClick={onClose}>
-            Cancelar doação
+        <div className="text-black pl-[30px] mb-12">
+          <p className="font-bold">INFORMAÇÕES DO ESTABELECIMENTO</p>
+          <p className="font-semibold">Amigos do Schappo</p>
+          <p className="">(11) 99999-9999</p>
+          <p className="">Rua Libre, 4571</p>
+          <p className="font-semibold">15h30 - 23/11/2024</p>
+        </div>
+
+        <div className="mb-4 flex items-center justify-end gap-4 pr-[10px]">
+          <button className="bg-white font-semibold text-[#FF9800] border border-solid border-[#FF9800] py-2 px-6 rounded hover:text-orange-600 hover:border-orange-600">
+            IMPRIMIR
+          </button>
+          <button className="bg-[#FF9800] font-semibold text-white py-2 px-8 rounded hover:bg-orange-600">
+            CONCLUIR DOAÇÃO
           </button>
         </div>
       </div>

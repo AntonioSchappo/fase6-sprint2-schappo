@@ -17,7 +17,7 @@ export default function ViewDonationONG({ isOpen, onClose }) {
         >
           &times;
         </button>
-        <h2 className="text-[32px] font-semibold text-[#FF9800] mb-4 text-center">
+        <h2 className="text-[32px] font-bold text-[#FF9800] mb-4 text-center">
           Visualizar doação
         </h2>
         <form className="my-8">

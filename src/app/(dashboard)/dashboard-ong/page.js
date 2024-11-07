@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import ViewDonationONG from "./components/viewDonationONG";
 import UpdateDonation from "./components/updateDonation";
+import { CreateDonation } from "@/components/Modals/CreateDonation";
 
 const Doar = () => {
   const [isViewDonationONG, setIsViewDonationONG] = useState(false);
@@ -153,7 +154,7 @@ const Doar = () => {
             </tbody>
           </table>
         </div>
-        <ViewDonationONG
+        <CreateDonation
           isOpen={isViewDonationONG}
           onClose={() => setIsViewDonationONG(false)}
         />

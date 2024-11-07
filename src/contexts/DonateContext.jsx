@@ -14,6 +14,7 @@ export default function DonateProvider({ children }) {
    * @returns {boolean}
    */
   function RegisterDonation(donation) {
+    console.log("fajdsmiofjasoifjkasio");
     const newDonation = {
       donationID: uuid(),
       companyName: donation.companyName,

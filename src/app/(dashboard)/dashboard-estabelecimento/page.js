@@ -5,18 +5,23 @@ import NewDonationModal from "./components/newDonationModal";
 import ONGListModal from "./components/ONGListModal";
 import ViewDonationModal from "./components/viewDonationModal";
 import { TableRow } from "@/components/TableRow";
+import { CreateDonation } from "@/components/Modals/CreateDonation";
+import { useDonate } from "@/hooks/useDonate";
 
 const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [isONGListModalOpen, setIsONGListModalOpen] = useState(false);
   const [isViewDonationModal, setIsViewDonationModal] = useState(false);
 
+  const { RegisterDonation } = useDonate();
+
   const toggleList = () => {
     setIsDonationModalOpen(false);
     setIsONGListModalOpen(true);
   };
 
-  const toggleDonation = () => {
+  const registerNewDonation = () => {
+    RegisterDonation(arroz);
     setIsDonationModalOpen(true);
     setIsONGListModalOpen(false);
   };
@@ -51,7 +56,7 @@ const Doar = () => {
               </tr>
             </thead>
             <tbody>
-              <TableRow 
+              <TableRow
                 status="em-aberto"
                 companyName="Amigos do Schappo"
                 companyCnpj="11.903.554/0001-15"
@@ -62,7 +67,7 @@ const Doar = () => {
             </tbody>
           </table>
         </div>
-        <NewDonationModal
+        <CreateDonation
           isOpen={isDonationModalOpen}
           onClose={() => setIsDonationModalOpen(false)}
           toggleList={toggleList}
@@ -70,7 +75,7 @@ const Doar = () => {
         <ONGListModal
           isOpen={isONGListModalOpen}
           onClose={() => setIsONGListModalOpen(false)}
-          toggleDonation={toggleDonation}
+          toggleDonation={registerNewDonation}
         />
         <ViewDonationModal
           isOpen={isViewDonationModal}

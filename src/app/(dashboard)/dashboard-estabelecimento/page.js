@@ -1,12 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import NewDonationModal from "./components/newDonationModal";
 import ONGListModal from "./components/ONGListModal";
 import ViewDonationModal from "./components/viewDonationModal";
-import { Header } from "@/components/Header";
+import { TableRow } from "@/components/TableRow";
 
 const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
@@ -53,89 +51,14 @@ const Doar = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-gray-100">
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center">
-                  <span className="bg-blue-500 h-3 w-3 rounded-full inline-block mr-2"></span>
-                  Processando
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                  <b>Amigos do Schappo</b>
-                  <p>(11) 99999-9999</p>
-                  <p>Rua Libre, 4571</p>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                  <b>Perecíveis</b>
-                  <p>14kg</p>
-                  <p>15/10/2024 - 15h30</p>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
-                  <button className="text-orange-500 hover:text-orange-600">
-                    <Image
-                      onClick={() => setIsViewDonationModal(true)}
-                      src="/assets/images/eye.svg"
-                      height={25}
-                      width={25}
-                      alt="vizualizar"
-                    />
-                  </button>
-                </td>
-              </tr>
-
-              <tr className="bg-white">
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center">
-                  <span className="bg-green-500 h-3 w-3 rounded-full inline-block mr-2"></span>
-                  Concluído
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                  <b>Amigos do Schappo</b>
-                  <p>(11) 99999-9999</p>
-                  <p>Rua Libre, 4571</p>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                  <b>Perecíveis</b>
-                  <p>14kg</p>
-                  <p>15/10/2024 - 15h30</p>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
-                  <button className="text-orange-500 hover:text-orange-600">
-                    <Image
-                      onClick={() => setIsViewDonationModal(true)}
-                      src="/assets/images/eye.svg"
-                      height={25}
-                      width={25}
-                      alt="vizualizar"
-                    />
-                  </button>
-                </td>
-              </tr>
-
-              <tr className="bg-gray-100">
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center">
-                  <span className="bg-red-500 h-3 w-3 rounded-full inline-block mr-2"></span>
-                  Recusado
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                  <b>Amigos do Schappo</b>
-                  <p>(11) 99999-9999</p>
-                  <p>Rua Libre, 4571</p>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                  <b>Perecíveis</b>
-                  <p>14kg</p>
-                  <p>15/10/2024 - 15h30</p>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
-                  <button className="text-orange-500 hover:text-orange-600">
-                    <Image
-                      onClick={() => setIsViewDonationModal(true)}
-                      src="/assets/images/eye.svg"
-                      height={25}
-                      width={25}
-                      alt="vizualizar"
-                    />
-                  </button>
-                </td>
-              </tr>
+              <TableRow 
+                status="em-aberto"
+                companyName="Amigos do Schappo"
+                companyCnpj="11.903.554/0001-15"
+                type="Perecíveis"
+                data="15/10/2024"
+                setIsViewDonationModal={setIsViewDonationModal}
+              />
             </tbody>
           </table>
         </div>

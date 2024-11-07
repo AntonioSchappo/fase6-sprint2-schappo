@@ -6,6 +6,7 @@ import { useState } from "react";
 import NewDonationModal from "./components/newDonationModal";
 import ONGListModal from "./components/ONGListModal";
 import ViewDonationModal from "./components/viewDonationModal";
+import { Header } from "@/components/Header";
 
 const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
@@ -24,39 +25,6 @@ const Doar = () => {
 
   return (
     <div className="h-screen w-screen overflow-y-auto flex flex-col justify-between relative">
-      <nav className="absolute top-0 left-0 w-full z-20 py-4 bg-black">
-        <div className="container mx-auto flex justify-between items-center">
-          <div>
-            <Link href="/user">
-              <Image
-                src="/assets/images/avatar.svg"
-                width={30}
-                height={30}
-                alt="Usuário"
-              />
-            </Link>
-          </div>
-          <Link href="/">
-            <Image
-              src="/assets/images/fome-zero-logo.png"
-              width={53}
-              height={58}
-              alt="Fome Zero"
-            />
-          </Link>
-          <div>
-            <Link href="/doar">
-              <Image
-                src="/assets/images/logout.svg"
-                width={36}
-                height={36}
-                alt="Sair"
-              />
-            </Link>
-          </div>
-        </div>
-      </nav>
-
       <main className="flex-1 pt-20">
         <div className="pt-14 flex flex-col items-center bg-white w-full h-full">
           <h1 className="text-black text-4xl font-bold">Sopão do Curry</h1>

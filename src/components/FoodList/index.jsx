@@ -1,11 +1,14 @@
 "use client";
 
+import { useDonate } from "@/hooks/useDonate";
 import React, { useState } from "react";
 
 function FoodList() {
   const [itens, setItens] = useState([
     { nome: "", quantidade: "", unidade: "" },
   ]);
+
+  const { createdDonation, setCreatedDonation } = useDonate();
 
   const handleChange = (index, campo, valor) => {
     const novosItens = [...itens];
@@ -15,6 +18,15 @@ function FoodList() {
     if (index === itens.length - 1 && campo === "nome" && valor.trim() !== "") {
       setItens([...itens, { nome: "", quantidade: "", unidade: "" }]);
     }
+
+    setCreatedDonation({
+      ...createdDonation,
+      itens: novosItens.map((item) => ({
+        nome: item.nome,
+        quantidade: item.quantidade,
+        unidade: item.unidade,
+      })),
+    });
   };
 
   return (

@@ -3,7 +3,7 @@ import Image from "next/image";
 export function TableRow({
   status,
   ongName,
-  companyCnpj,
+  ongEmail,
   type,
   data,
   time,
@@ -37,7 +37,7 @@ export function TableRow({
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
           <b>{ongName}</b>
-          <p>{companyCnpj}</p>
+          <p>{ongEmail}</p>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
           <b>{formatedType}</b>

@@ -69,7 +69,7 @@ const Doar = () => {
                     key={donation.donationID}
                     status={donation.status}
                     ongName={donation.ongName}
-                    companyCnpj={donation.companyCnpj}
+                    ongEmail={donation.ongEmail}
                     type={donation.type}
                     data={donation.data}
                     time={donation.time}

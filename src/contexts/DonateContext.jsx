@@ -19,6 +19,7 @@ export default function DonateProvider({ children }) {
       companyName: donation.companyName,
       companyCnpj: donation.companyCnpj,
       ongName: donation.ongName,
+      ongEmail: donation.ongEmail,
       ongID: donation.ongID,
       type: donation.type,
       items: donation.items,

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/Button";
 import { OngRow } from "@/components/OngRow";
 import { useDonate } from "@/hooks/useDonate";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -50,6 +51,7 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
                   ...createdDonation,
                   ongName: event.target.value,
                   ongID: ong.id,
+                  ongEmail: ong.email,
                   companyName: business.fantasyName,
                   companyCnpj: business.cnpj,
                   items: "arroz",
@@ -60,18 +62,17 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
         </div>
 
         <div className="mt-6 flex justify-between">
-          <button
+          <Button
             className="text-orange-600 font-semibold px-8 border-orange-600 border-2 py-2 rounded hover:bg-gray-200"
             onClick={toggleDonation}
-          >
-            Voltar
-          </button>
-          <button
+            text="Voltar"
+            variant="outline"
+          />
+          <Button
             onClick={() => createDonation()}
             className="bg-orange-500 text-white py-2 font-bold px-8 rounded hover:bg-orange-600"
-          >
-            Solicitar Doação
-          </button>
+            text="Solicitar Doação"
+          />
         </div>
       </div>
     </div>

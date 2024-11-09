@@ -1,7 +1,25 @@
 "use client";
 
+import { OngRow } from "@/components/OngRow";
+import { useDonate } from "@/hooks/useDonate";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+
 export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
   if (!isOpen) return null;
+  const { createdDonation, setCreatedDonation, RegisterDonation } = useDonate();
+  const { getItem } = useLocalStorage("ongs");
+  const { getItem: getBussines } = useLocalStorage("businessLogged");
+  const business = getBussines();
+
+  const ongList = getItem() || [];
+
+  console.log(createdDonation);
+
+  function createDonation() {
+    RegisterDonation(createdDonation);
+    alert("Doação cadastrado com sucesso!");
+    onClose();
+  }
 
   return (
     <div
@@ -20,85 +38,25 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
         <div className="flex w-full justify-center items-center">
           <h2 className="text-xl font-bold text-orange-600">Lista de ONGs</h2>
         </div>
-        <p className="text-sm flex justify-center text-orange-600">
-          Exibindo as ONGs mais próximas da sua localidade
-        </p>
 
         <div className="mt-8 space-y-4">
-          <label className="flex items-start space-x-2">
-            <input
-              type="checkbox"
-              className="mt-1 h-4 w-4 text-orange-500 focus:ring-orange-400"
-              name="ong"
-              value="Amigos de Benevides"
+          {ongList.map((ong) => (
+            <OngRow
+              key={ong.id}
+              ongName={ong.name}
+              ongEmail={ong.email}
+              onChange={(event) =>
+                setCreatedDonation({
+                  ...createdDonation,
+                  ongName: event.target.value,
+                  ongID: ong.id,
+                  companyName: business.fantasyName,
+                  companyCnpj: business.cnpj,
+                  items: "arroz",
+                })
+              }
             />
-            <div>
-              <p className="text-gray-800 font-semibold">Amigos de Benevides</p>
-              <p className="text-sm text-gray-500">
-                Rua Carioca, 271 - São Paulo/SP (2km)
-              </p>
-            </div>
-          </label>
-
-          <label className="flex items-start space-x-2">
-            <input
-              type="checkbox"
-              className="mt-1 h-4 w-4 text-orange-500 focus:ring-orange-400"
-              name="ong"
-              value="Mãos que Alimentam"
-            />
-            <div>
-              <p className="text-gray-800 font-semibold">Mãos que Alimentam</p>
-              <p className="text-sm text-gray-500">
-                Rua das Acácias, 102 - São Paulo/SP (2.2km)
-              </p>
-            </div>
-          </label>
-
-          <label className="flex items-start space-x-2">
-            <input
-              type="checkbox"
-              className="mt-1 h-4 w-4 text-orange-500 focus:ring-orange-400"
-              name="ong"
-              value="Pão e Esperança"
-            />
-            <div>
-              <p className="text-gray-800 font-semibold">Pão e Esperança</p>
-              <p className="text-sm text-gray-500">
-                Avenida Esperança, 745 - São Paulo/SP (3km)
-              </p>
-            </div>
-          </label>
-
-          <label className="flex items-start space-x-2">
-            <input
-              type="checkbox"
-              className="mt-1 h-4 w-4 text-orange-500 focus:ring-orange-400"
-              name="ong"
-              value="Corações Solidários"
-            />
-            <div>
-              <p className="text-gray-800 font-semibold">Corações Solidários</p>
-              <p className="text-sm text-gray-500">
-                Rua do Abrigo, 56 - São Paulo/SP (4.5km)
-              </p>
-            </div>
-          </label>
-
-          <label className="flex items-start space-x-2">
-            <input
-              type="checkbox"
-              className="mt-1 h-4 w-4 text-orange-500 focus:ring-orange-400"
-              name="ong"
-              value="Mesa para Todos"
-            />
-            <div>
-              <p className="text-gray-800 font-semibold">Mesa para Todos</p>
-              <p className="text-sm text-gray-500">
-                Praça da Solidariedade, 32 - São Paulo/SP (4.7km)
-              </p>
-            </div>
-          </label>
+          ))}
         </div>
 
         <div className="mt-6 flex justify-between">
@@ -109,7 +67,7 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
             Voltar
           </button>
           <button
-            onClick={onClose}
+            onClick={() => createDonation()}
             className="bg-orange-500 text-white py-2 font-bold px-8 rounded hover:bg-orange-600"
           >
             Solicitar Doação

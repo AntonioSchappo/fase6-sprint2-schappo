@@ -2,10 +2,11 @@ import Image from "next/image";
 
 export function TableRow({
   status,
-  companyName,
+  ongName,
   companyCnpj,
   type,
   data,
+  time,
   setIsViewDonationModal,
 }) {
   let statusColor = "";
@@ -20,6 +21,11 @@ export function TableRow({
   if (status === "concluido") formatedStatus = "Concluído";
   if (status === "cancelado") formatedStatus = "Cancelado";
 
+  let formatedType = "";
+  if (type === "perecivel") formatedType = "Perecível";
+  if (type === "nao-perecivel") formatedType = "Não perecível";
+  if (type === "ambos") formatedType = "Perecível e Não perecível";
+
   return (
     <>
       <tr className="bg-gray-100">
@@ -30,12 +36,14 @@ export function TableRow({
           {formatedStatus}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-          <b>{companyName}</b>
+          <b>{ongName}</b>
           <p>{companyCnpj}</p>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-          <b>{type}</b>
-          <p>{data}</p>
+          <b>{formatedType}</b>
+          <p>
+            {data} - {time}
+          </p>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
           <button className="text-orange-500 hover:text-orange-600">

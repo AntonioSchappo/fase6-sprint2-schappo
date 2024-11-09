@@ -19,7 +19,7 @@ const Doar = () => {
   const business = getItem();
 
   const { GetDonationsByCompany } = useDonate();
-  const allDonations = GetDonationsByCompany(business.companyCnpj);
+  const allDonations = GetDonationsByCompany(business.cnpj);
 
   const toggleList = () => {
     setIsDonationModalOpen(false);
@@ -68,17 +68,18 @@ const Doar = () => {
                   <TableRow
                     key={donation.donationID}
                     status={donation.status}
-                    companyName={donation.companyName}
+                    ongName={donation.ongName}
                     companyCnpj={donation.companyCnpj}
                     type={donation.type}
                     data={donation.data}
+                    time={donation.time}
                     setIsViewDonationModal={setIsViewDonationModal}
                   />
                 ))
               ) : (
-                <span className="text-center text-2xl text-black font-semibold">
-                  Nenhuma doação encontrada
-                </span>
+                <tr className="text-center text-2xl text-black font-semibold">
+                  <td>Nenhuma doação encontrada</td>
+                </tr>
               )}
             </tbody>
           </table>

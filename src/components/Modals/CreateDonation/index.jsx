@@ -3,9 +3,11 @@
 import { Button } from "@/components/Button";
 import FoodList from "@/components/FoodList";
 import { Select } from "@/components/Select";
+import { useDonate } from "@/hooks/useDonate";
 
 export function CreateDonation({ isOpen, onClose, toggleList }) {
   if (!isOpen) return null;
+  const { createdDonation, setCreatedDonation } = useDonate();
 
   return (
     <div className="max-h-[50%] overflow-x-auto">
@@ -28,7 +30,17 @@ export function CreateDonation({ isOpen, onClose, toggleList }) {
           <form className="my-8">
             <div className="flex gap-x-4 mb-4">
               <div className="mb-4 w-[128px]">
-                <Select label="Tipo de alimento *" id="tipo-alimento" required>
+                <Select
+                  label="Tipo de alimento *"
+                  id="tipo-alimento"
+                  required
+                  onChange={(event) =>
+                    setCreatedDonation({
+                      ...createdDonation,
+                      type: event.target.value,
+                    })
+                  }
+                >
                   <option
                     defaultValue=""
                     disabled
@@ -38,9 +50,15 @@ export function CreateDonation({ isOpen, onClose, toggleList }) {
                   >
                     Perecível
                   </option>
-                  <option>Somente Alimentos Perecíveis</option>
-                  <option>Somente Alimentos Não Perecíveis</option>
-                  <option>Alimentos Perecíveis e Não Perecíveis</option>
+                  <option value="perecivel">
+                    Somente Alimentos Perecíveis
+                  </option>
+                  <option value="nao-perecivel">
+                    Somente Alimentos Não Perecíveis
+                  </option>
+                  <option value="ambos">
+                    Alimentos Perecíveis e Não Perecíveis
+                  </option>
                 </Select>
               </div>
             </div>
@@ -55,12 +73,24 @@ export function CreateDonation({ isOpen, onClose, toggleList }) {
                 <input
                   type="date"
                   className="border-gray-300 border-2 text-gray-400 p-2 rounded-lg shadow-sm focus:border-orange-500 focus:ring-orange-500"
+                  onChange={(event) =>
+                    setCreatedDonation({
+                      ...createdDonation,
+                      data: event.target.value,
+                    })
+                  }
                 />
               </div>
               <div className="w-auto self-end">
                 <input
                   type="time"
                   className="border-gray-300 border-2 text-gray-400 p-2 rounded-lg shadow-sm focus:border-orange-500 focus:ring-orange-500"
+                  onChange={(event) =>
+                    setCreatedDonation({
+                      ...createdDonation,
+                      time: event.target.value,
+                    })
+                  }
                 />
               </div>
             </div>

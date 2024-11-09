@@ -7,13 +7,19 @@ import ViewDonationModal from "./components/viewDonationModal";
 import { TableRow } from "@/components/TableRow";
 import { CreateDonation } from "@/components/Modals/CreateDonation";
 import { useDonate } from "@/hooks/useDonate";
+import { useLogin } from "@/hooks/useLogin";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [isONGListModalOpen, setIsONGListModalOpen] = useState(false);
   const [isViewDonationModal, setIsViewDonationModal] = useState(false);
 
-  const { RegisterDonation } = useDonate();
+  const { getItem } = useLocalStorage("businessLogged");
+  const business = getItem();
+
+  const { GetDonationsByCompany } = useDonate();
+  const allDonations = GetDonationsByCompany(business.companyCnpj);
 
   const toggleList = () => {
     setIsDonationModalOpen(false);
@@ -21,7 +27,6 @@ const Doar = () => {
   };
 
   const registerNewDonation = () => {
-    RegisterDonation(arroz);
     setIsDonationModalOpen(true);
     setIsONGListModalOpen(false);
   };
@@ -30,7 +35,9 @@ const Doar = () => {
     <div className="h-screen w-screen overflow-y-auto flex flex-col justify-between relative">
       <main className="flex-1 pt-20">
         <div className="pt-14 flex flex-col items-center bg-white w-full h-full">
-          <h1 className="text-black text-4xl font-bold">Sopão do Curry</h1>
+          <h1 className="text-black text-4xl font-bold">
+            {business.fantasyName}
+          </h1>
           <p className="text-black text-xl pb-12 pt-4">Lista de Doações</p>
 
           <table className="w-4/5">
@@ -56,14 +63,23 @@ const Doar = () => {
               </tr>
             </thead>
             <tbody>
-              <TableRow
-                status="em-aberto"
-                companyName="Amigos do Schappo"
-                companyCnpj="11.903.554/0001-15"
-                type="Perecíveis"
-                data="15/10/2024"
-                setIsViewDonationModal={setIsViewDonationModal}
-              />
+              {allDonations.length > 0 ? (
+                allDonations.map((donation) => (
+                  <TableRow
+                    key={donation.donationID}
+                    status={donation.status}
+                    companyName={donation.companyName}
+                    companyCnpj={donation.companyCnpj}
+                    type={donation.type}
+                    data={donation.data}
+                    setIsViewDonationModal={setIsViewDonationModal}
+                  />
+                ))
+              ) : (
+                <span className="text-center text-2xl text-black font-semibold">
+                  Nenhuma doação encontrada
+                </span>
+              )}
             </tbody>
           </table>
         </div>

@@ -54,7 +54,7 @@ export default function DonateProvider({ children }) {
    * @returns {Donation}
    */
   function GetDonationsByCompany(companyCnpj) {
-    const donations = getItem();
+    const donations = getItem() || [];
     return donations.filter((donation) => donation.companyCnpj === companyCnpj);
   }
 

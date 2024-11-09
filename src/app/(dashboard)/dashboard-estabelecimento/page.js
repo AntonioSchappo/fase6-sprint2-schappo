@@ -14,6 +14,7 @@ const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [isONGListModalOpen, setIsONGListModalOpen] = useState(false);
   const [isViewDonationModal, setIsViewDonationModal] = useState(false);
+  const [isViewDonationId, setIsViewDonationId] = useState("");
 
   const { getItem } = useLocalStorage("businessLogged");
   const business = getItem();
@@ -73,7 +74,9 @@ const Doar = () => {
                     type={donation.type}
                     data={donation.data}
                     time={donation.time}
+                    donationID={donation.donationID}
                     setIsViewDonationModal={setIsViewDonationModal}
+                    setIsViewDonationId={setIsViewDonationId}
                   />
                 ))
               ) : (
@@ -96,6 +99,7 @@ const Doar = () => {
         />
         <ViewDonationModal
           isOpen={isViewDonationModal}
+          donationID={isViewDonationId}
           onClose={() => setIsViewDonationModal(false)}
         />
       </main>

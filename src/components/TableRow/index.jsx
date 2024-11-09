@@ -8,6 +8,8 @@ export function TableRow({
   data,
   time,
   setIsViewDonationModal,
+  setIsViewDonationId,
+  donationID,
 }) {
   let statusColor = "";
   if (status === "em-aberto") statusColor = "bg-yellow-500";
@@ -25,6 +27,11 @@ export function TableRow({
   if (type === "perecivel") formatedType = "Perecível";
   if (type === "nao-perecivel") formatedType = "Não perecível";
   if (type === "ambos") formatedType = "Perecível e Não perecível";
+
+  const handleOpenViewModal = () => {
+    setIsViewDonationModal(true);
+    setIsViewDonationId(donationID);
+  };
 
   return (
     <>
@@ -48,7 +55,7 @@ export function TableRow({
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
           <button className="text-orange-500 hover:text-orange-600">
             <Image
-              onClick={() => setIsViewDonationModal(true)}
+              onClick={handleOpenViewModal}
               src="/assets/images/eye.svg"
               height={25}
               width={25}

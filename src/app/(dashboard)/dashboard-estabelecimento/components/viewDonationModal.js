@@ -1,7 +1,9 @@
 "use client";
 
-export default function ViewDonationModal({ isOpen, onClose }) {
+export default function ViewDonationModal({ isOpen, onClose, donationID }) {
   if (!isOpen) return null;
+
+  console.log(donationID);
 
   return (
     <div

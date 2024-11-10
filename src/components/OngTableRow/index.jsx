@@ -33,8 +33,6 @@ export function OngTableRow({
   if (type === "nao-perecivel") formatedType = "Não perecíveis";
   if (type === "ambos") formatedType = "Perecíveis e Não perecíveis";
 
-  const { GetDonation } = useDonate();
-
   const calculateTotalByUnit = (items) => {
     return items.reduce((acc, item) => {
       if (item.unidade && item.quantidade) {

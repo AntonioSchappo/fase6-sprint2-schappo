@@ -31,7 +31,7 @@ const Doar = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col justify-between relative">
+    <div className="h-screen flex flex-col justify-between relative">
       <main className="flex-1">
         <div className="pt-14 flex flex-col items-center bg-white w-full h-full">
           <h1 className="text-black text-4xl font-bold">

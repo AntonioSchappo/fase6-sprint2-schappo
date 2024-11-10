@@ -35,7 +35,7 @@ export function TableRow({
 
   return (
     <>
-      <tr className="bg-gray-100">
+      <tr className="bg-gray-100 border-t-2 border-gray-300">
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
           <span
             className={`${statusColor} h-3 w-3 rounded-full inline-block mr-2`}

@@ -20,16 +20,6 @@ export function Header() {
   return (
     <nav className="w-full py-4 bg-black">
       <div className="container mx-auto flex justify-between items-center">
-        <div>
-          <Link href="/user">
-            <Image
-              src="/assets/images/avatar.svg"
-              width={30}
-              height={30}
-              alt="Usuário"
-            />
-          </Link>
-        </div>
         <Link href="/">
           <Image
             src="/assets/images/fome-zero-logo.png"
@@ -43,8 +33,8 @@ export function Header() {
             <Image
               src="/assets/images/logout.svg"
               onClick={handleLogout}
-              width={36}
-              height={36}
+              width={32}
+              height={32}
               alt="Sair"
             />
           </Link>

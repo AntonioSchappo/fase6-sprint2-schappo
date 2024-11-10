@@ -42,7 +42,7 @@ export default function ViewDonationModal({ isOpen, onClose, donationID }) {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="bg-white rounded-[24px] w-[678px] p-12 relative overflow-auto">
+      <div className="bg-white rounded-[24px] w-[678px] p-12 relative max-h-[90vh] overflow-auto">
         <button
           className="absolute top-4 right-4 text-gray-400 text-2xl hover:text-gray-700"
           onClick={onClose}

@@ -2,6 +2,13 @@
 import { useDonate } from "@/hooks/useDonate";
 
 import Image from "next/image";
+import {
+  EmAbertoStatus,
+  ProcessandoStatus,
+  ConcluidoStatus,
+  CanceladoStatus,
+} from "@/components/StatusDonation";
+import { Button } from "@/components/Button";
 
 // PARA CANCELAR A DOAÇÃO
 export default function UpdateDonation({ isOpen, onClose, donationID }) {
@@ -9,7 +16,13 @@ export default function UpdateDonation({ isOpen, onClose, donationID }) {
   if (!isOpen) return null;
 
   const donation = GetDonation(donationID);
-  
+  console.log(donation);
+
+  const handleAccept = () => {
+    UpdateDonationStatus(donationID, "processando");
+    onClose();
+  };
+
   const handleConclude = () => {
     UpdateDonationStatus(donationID, "concluido");
     onClose();
@@ -42,26 +55,10 @@ export default function UpdateDonation({ isOpen, onClose, donationID }) {
             className="text-center mb-8"
           />
 
-          <div className="flex items-center gap-3">
-            <div className="circulo-status w-[50px] h-[50px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
-
-            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
-            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
-            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
-
-            <div className="circulo-status w-[50px] h-[50px] rounded-full border-2 border-[#FF9800] bg-[#FF9800]"></div>
-
-            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800]"></div>
-            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800]"></div>
-            <div className="circulo-status w-[20px] h-[20px] rounded-full border-2 border-[#FF9800]"></div>
-
-            <div className="circulo-status w-[50px] h-[50px] rounded-full border-2 border-[#FF9800]"></div>
-          </div>
-          <div className="w-[384px] flex items-center text-black justify-between mb-8">
-            <p className="">Em aberto</p>
-            <p className="">Processando</p>
-            <p className="">Concluído</p>
-          </div>
+          {donation.status === "em-aberto" && <EmAbertoStatus />}
+          {donation.status === "processando" && <ProcessandoStatus />}
+          {donation.status === "concluido" && <ConcluidoStatus />}
+          {donation.status === "cancelado" && <CanceladoStatus />}
         </div>
 
         <div className="text-black pl-[30px] mb-12">
@@ -69,23 +66,23 @@ export default function UpdateDonation({ isOpen, onClose, donationID }) {
           <p className="font-semibold">{donation.companyName}</p>
           <p className="">{donation.companyPhone}</p>
           <p className="">{donation.companyAddress}</p>
-          <p className="font-semibold"> {new Date(donation.data).toLocaleDateString('pt-BR')} - {donation.time}</p>
+          <p className="font-semibold">
+            {" "}
+            {new Date(donation.data).toLocaleDateString("pt-BR")} -{" "}
+            {donation.time}
+          </p>
         </div>
 
         <div className="mb-4 flex items-center justify-end gap-4 pr-[10px]">
-          <button className="bg-white font-semibold text-[#FF9800] border border-solid border-[#FF9800] py-2 px-6 rounded hover:text-orange-600 hover:border-orange-600">
-            IMPRIMIR
-          </button>
-          {
-            donation.status === "em-aberto" && (
-              <button
-                className="bg-[#FF9800] font-semibold text-white py-2 px-8 rounded hover:bg-orange-600"
-                onClick={handleConclude}>
-                CONCLUIR DOAÇÃO
-              </button>
-            )
-          }
+          <Button variant="outline" text="Imprimir" />
 
+          {donation.status === "em-aberto" && (
+            <Button onClick={handleAccept} text="Aceitar Doação" />
+          )}
+
+          {donation.status === "processando" && (
+            <Button onClick={handleConclude} text="Concluir Doação" />
+          )}
         </div>
       </div>
     </div>

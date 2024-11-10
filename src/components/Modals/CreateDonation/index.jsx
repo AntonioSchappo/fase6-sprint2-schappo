@@ -19,14 +19,6 @@ export function CreateDonation({ isOpen, onClose, toggleList }) {
       return alert("Adicione pelo menos um alimento para continuar");
     }
 
-    if (
-      !createdDonation.items.every(
-        (item) => item.unidade && Number.isFinite(item.quantidade)
-      )
-    ) {
-      return alert("Preencha todos os campos de quantidade e unidade");
-    }
-
     if (!createdDonation.data || !createdDonation.time) {
       return alert("Selecione a data e horário para continuar");
     }

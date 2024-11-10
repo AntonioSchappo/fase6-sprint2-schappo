@@ -1,11 +1,14 @@
 export function Select({ ...props }) {
   return (
     <>
-      <label htmlFor={props.id} className="text-base mt-4 mb-2">
+      <label
+        htmlFor={props.id}
+        className="block text-sm font-semibold text-black mb-1"
+      >
         {props.label}
       </label>
       <select
-        className="w-full h-14 p-4 border border-solid rounded-md"
+        className="w-full h-14 p-2 border-gray-300 border-2 text-black placeholder:text-black rounded-md shadow-sm"
         {...props}
       />
     </>

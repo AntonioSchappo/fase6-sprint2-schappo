@@ -47,7 +47,7 @@ export default function LandingPage() {
             Junte-se a nós para levar alimentos a quem precisa e fazer a
             diferença na comunidade. Seu negócio pode alimentar milhares.
           </p>
-          <div>
+          <div className="flex flex-row gap-4">
             <Link href={doarRef}>
               <Button text="Doar Agora" variant="primary" />
             </Link>

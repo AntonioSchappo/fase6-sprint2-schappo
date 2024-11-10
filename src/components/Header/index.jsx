@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLogin } from "@/hooks/useLogin";
 export function Header() {
-  const { LogoutBusiness, LogoutOng, isBusinessLoggedIn, isOngLoggedIn } = useLogin();
+  const { LogoutBusiness, LogoutOng, isBusinessLoggedIn, isOngLoggedIn } =
+    useLogin();
   const pathname = usePathname();
 
   const handleLogout = () => {
@@ -15,10 +16,9 @@ export function Header() {
       LogoutOng();
     }
   };
-  
-  return (
 
-    <nav className="absolute top-0 left-0 w-full z-20 py-4 bg-black">
+  return (
+    <nav className="w-full py-4 bg-black">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <Link href="/user">

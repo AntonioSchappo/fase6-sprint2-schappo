@@ -27,7 +27,7 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
       }}
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
     >
-      <div className="bg-white rounded-lg p-6 w-full max-w-lg shadow-lg relative">
+      <div className="bg-white rounded-lg w-full max-w-lg p-12 relative max-h-[90vh] overflow-auto">
         <button
           className="absolute top-4 right-4 text-gray-400 text-2xl hover:text-gray-700"
           onClick={onClose}

@@ -14,7 +14,7 @@ export default function NewDonationModal({
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="bg-white rounded-lg w-full max-w-lg p-12 relative">
+      <div className="bg-white rounded-lg w-full max-w-lg p-12 relative max-h-[90vh] overflow-auto">
         <button
           className="absolute top-4 right-4 text-gray-400 text-2xl hover:text-gray-700"
           onClick={onClose}

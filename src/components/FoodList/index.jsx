@@ -32,7 +32,9 @@ function FoodList() {
   return (
     <div className="grid grid-cols-[1fr_58px_94px] gap-4">
       <label className="text-black col-start-1 col-end-4">
-        Lista de alimentos
+        <span className="block text-sm font-semibold text-black mb-1">
+          Lista de alimentos
+        </span>
       </label>
       {items.map((item, index) => (
         <React.Fragment key={index}>
@@ -41,13 +43,14 @@ function FoodList() {
             placeholder="Nome do alimento"
             value={item.nome}
             onChange={(e) => handleChange(index, "nome", e.target.value)}
-            className="pl-6 border-b-2 py-2 border-gray-300 outline-none w-full text-black placeholder:text-gray-400"
+            className="p-2 border-b-2 py-2 border-gray-300 outline-none w-full text-black placeholder:text-gray-400"
           />
           <input
             type="number"
+            placeholder="Qntd."
             value={item.quantidade}
             onChange={(e) => handleChange(index, "quantidade", e.target.value)}
-            className="font-bold text-center border-b-2 py-2 border-gray-300 outline-none w-full text-black placeholder:text-black"
+            className="p-2 border-b-2 py-2 border-gray-300 outline-none w-full text-black placeholder:text-gray-400"
           />
           <select
             value={item.unidade}
@@ -55,7 +58,7 @@ function FoodList() {
             className="text-center border-gray-300 border-2 text-black placeholder:text-black rounded-md shadow-sm"
           >
             <option value="" disabled hidden>
-              Unidade
+              Selecione
             </option>
             <option>Un</option>
             <option>Kg</option>

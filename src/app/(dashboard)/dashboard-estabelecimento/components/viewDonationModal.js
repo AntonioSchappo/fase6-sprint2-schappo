@@ -7,9 +7,9 @@ export default function ViewDonationModal({ isOpen, onClose, donationID }) {
 
   const donation = GetDonation(donationID);
   const type = {
-    "perecivel": "Alimentos Perecíveis",
+    perecivel: "Alimentos Perecíveis",
     "nao-perecivel": "Alimentos Não perecíveis",
-    "ambos": "Alimentos Perecíveis e Não Perecíveis",	
+    ambos: "Alimentos Perecíveis e Não Perecíveis",
   };
 
   const calculateTotalByUnit = (items) => {
@@ -25,7 +25,9 @@ export default function ViewDonationModal({ isOpen, onClose, donationID }) {
   };
 
   function handleTotal(total) {
-    return Object.entries(total).map(([unit, quantity]) => `${quantity} ${unit}`).join(", ");
+    return Object.entries(total)
+      .map(([unit, quantity]) => `${quantity} ${unit}`)
+      .join(", ");
   }
 
   function handleCancel() {
@@ -40,14 +42,14 @@ export default function ViewDonationModal({ isOpen, onClose, donationID }) {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="bg-white rounded-lg w-full max-w-lg p-8 relative">
+      <div className="bg-white rounded-[24px] w-[678px] p-12 relative overflow-auto">
         <button
           className="absolute top-4 right-4 text-gray-400 text-2xl hover:text-gray-700"
           onClick={onClose}
         >
           &times;
         </button>
-        <h2 className="text-xl font-semibold text-orange-500 mb-4 text-center">
+        <h2 className="text-[32px] font-bold text-[#FF9800] mb-6 text-center">
           Visualizar doação
         </h2>
 
@@ -86,22 +88,21 @@ export default function ViewDonationModal({ isOpen, onClose, donationID }) {
                 value={item.nome}
                 readOnly
                 className="font-semibold text-center border-b-2 py-2 border-gray-300 outline-none w-full text-black placeholder:text-black"
-                />
+              />
               <input
                 type="text"
                 value={item.quantidade}
                 readOnly
                 className="font-semibold text-center border-b-2 py-2 border-gray-300 outline-none w-full text-black placeholder:text-black"
-                />
+              />
               <input
                 type="text"
                 value={item.unidade}
                 readOnly
                 className="font-semibold text-center border-b-2 py-2 border-gray-300 outline-none w-full text-black placeholder:text-black"
-                />
+              />
             </React.Fragment>
-          )
-          )}
+          ))}
         </div>
 
         <div className="mb-4">
@@ -126,9 +127,12 @@ export default function ViewDonationModal({ isOpen, onClose, donationID }) {
 
         <div className="mt-6 text-right">
           {donation.status === "em-aberto" && (
-            <button className="text-red-600 hover:text-red-700" onClick={handleCancel}>
+            <button
+              className="text-red-600 hover:text-red-700"
+              onClick={handleCancel}
+            >
               Cancelar doação
-           </button> 
+            </button>
           )}
         </div>
       </div>

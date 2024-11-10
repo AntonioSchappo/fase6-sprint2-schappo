@@ -3,8 +3,10 @@ import { useDonate } from "@/hooks/useDonate";
 
 export function OngTableRow({
   status,
-  ongName,
-  ongEmail,
+  companyName,
+  companyPhone,
+  companyAddress,
+  items,
   type,
   data,
   time,
@@ -12,7 +14,7 @@ export function OngTableRow({
   setIsViewDonationId,
   donationID,
   setIsUpdateDonationModal,
-  setIsUpdateDonationId
+  setIsUpdateDonationId,
 }) {
   let statusColor = "";
   if (status === "em-aberto") statusColor = "bg-yellow-500";
@@ -32,7 +34,6 @@ export function OngTableRow({
   if (type === "ambos") formatedType = "Perecíveis e Não perecíveis";
 
   const { GetDonation } = useDonate();
-  const donation = GetDonation(donationID);
 
   const calculateTotalByUnit = (items) => {
     return items.reduce((acc, item) => {
@@ -47,7 +48,9 @@ export function OngTableRow({
   };
 
   function handleTotal(total) {
-    return Object.entries(total).map(([unit, quantity]) => `${quantity} ${unit}`).join(", ");
+    return Object.entries(total)
+      .map(([unit, quantity]) => `${quantity} ${unit}`)
+      .join(", ");
   }
 
   const handleOpenViewModal = () => {
@@ -62,46 +65,46 @@ export function OngTableRow({
 
   return (
     <>
-      <tr className="bg-gray-100">
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center">
+      <tr className="bg-gray-100 border-t-2 border-gray-300">
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
           <span
             className={`${statusColor} h-3 w-3 rounded-full inline-block mr-2`}
           ></span>
           {formatedStatus}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-          <b>{ongName}</b>
-          <p>{ongEmail}</p>
+          <b>{companyName}</b>
+          <p>{companyPhone}</p>
+          <p>{companyAddress}</p>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-            <b>{formatedType}</b>
-            <p>{handleTotal(calculateTotalByUnit(donation.items))}</p>
-            <p>
-                {new Date(data).toLocaleDateString('pt-BR')} - {time}
-            </p>
+          <b>{formatedType}</b>
+          <p>{handleTotal(calculateTotalByUnit(items))}</p>
+          <p>
+            {new Date(data).toLocaleDateString("pt-BR")} - {time}
+          </p>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">
-        <div>
-          <button className="px-4 text-orange-500 hover:text-orange-600">
-            <Image
-              onClick={handleOpenViewModal}
-              src="/assets/images/eye.svg"
-              height={25}
-              width={25}
-              alt="vizualizar"
-            />
-          </button>                    
-          <button className="text-orange-500 hover:text-orange-600">
-            <Image
-               onClick={() => handleOpenUpdateModal()}
+          <div>
+            <button className="px-4 text-orange-500 hover:text-orange-600">
+              <Image
+                onClick={handleOpenViewModal}
+                src="/assets/images/eye.svg"
+                height={25}
+                width={25}
+                alt="vizualizar"
+              />
+            </button>
+            <button className="text-orange-500 hover:text-orange-600">
+              <Image
+                onClick={() => handleOpenUpdateModal()}
                 src="/assets/images/package.svg"
                 height={25}
-                width={25}                        
+                width={25}
                 alt="vizualizar"
-            />
-        </button>
-          
-         </div> 
+              />
+            </button>
+          </div>
         </td>
       </tr>
     </>

@@ -26,7 +26,7 @@ export default function LoginProvider({ children }) {
     setIsBusinessLoggedIn(true);
     setBusinessLogged(businessToLog);
     setItem(businessToLog);
-    return isBusinessLoggedIn;
+    return true;
   }
 
   function LogoutBusiness() {
@@ -76,7 +76,15 @@ export default function LoginProvider({ children }) {
     setIsOngLoggedIn(true);
     setOngLogged(ongToLog);
     setItem(ongToLog);
-    return isBusinessLoggedIn;
+    return true;
+  }
+
+  function LogoutOng() {
+    const { removeItem } = useLocalStorage("ongLogged");
+
+    setIsOngLoggedIn(false);
+    setOngLogged({});
+    removeItem();
   }
 
   /**
@@ -143,6 +151,7 @@ export default function LoginProvider({ children }) {
         LogoutBusiness,
         RegisterBusiness,
         LoginOng,
+        LogoutOng,
         RegisterOng,
       }}
     >

@@ -9,6 +9,8 @@ export default function CadastrarEstabelecimento() {
     fantasyName: "",
     cnpj: "",
     type: "",
+    address: "",	
+    phone: "",
     email: "",
     password: "",
   });
@@ -20,6 +22,8 @@ export default function CadastrarEstabelecimento() {
       fantasyName: institution.fantasyName,
       cnpj: institution.cnpj,
       type: institution.type,
+      address: institution.address,
+      phone: institution.phone,
       email: institution.email,
       password: institution.password,
     };

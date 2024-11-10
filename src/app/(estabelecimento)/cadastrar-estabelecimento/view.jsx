@@ -14,7 +14,7 @@ export default function CadastrarEstabelecimentoView({
   return (
     <div className="h-screen w-screen overflow-y-auto grid grid-cols-2 justify-between bg-[#191919] font-nunito-sans">
       <div className="text-[#0D0E30] flex justify-center items-center">
-        <div className="w-[488px] h-fit bg-white rounded-md p-9">
+        <div className="w-[488px] h-fit bg-white rounded-md p-8">
           <h1 className="text-[40px] font-bold leading-none ">
             Cadastrar
             <br />
@@ -58,6 +58,27 @@ export default function CadastrarEstabelecimentoView({
               <option value="restaurante">Restaurante</option>
               <option value="outro">Outro</option>
             </Select>
+
+            <Input
+              label="Telefone"
+              id="telefone"
+              mask="(99) 99999-9999"
+              placeholder="Insira seu telefone"
+              required
+              onChange={(e) =>
+                setInstitution({ ...institution, phone: e.target.value })
+              }
+            />
+
+            <Input
+              label="Endereço"
+              id="endereco"
+              placeholder="Insira seu endereço"
+              required
+              onChange={(e) =>
+                setInstitution({ ...institution, address: e.target.value })
+              }
+            />
 
             <Input
               label="E-mail"

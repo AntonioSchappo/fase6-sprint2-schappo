@@ -8,15 +8,16 @@ import UpdateDonation from "./components/updateDonation";
 import { CreateDonation } from "@/components/Modals/CreateDonation";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useDonate } from "@/hooks/useDonate";
-import { TableRow } from "@/components/TableRow";
+import { OngTableRow } from "@/components/OngTableRow";
 
 
 
 
 const Doar = () => {
   const [isViewDonationONG, setIsViewDonationONG] = useState(false);
-  const [isUpdateDonation, setUpdateDonation] = useState(false);
   const [isViewDonationId, setIsViewDonationId] = useState("");
+  const [isUpdateDonation, setUpdateDonation] = useState(false);
+  const [isUpdateDonationId, setIsUpdateDonationId] = useState("");	
 
 
   const { getItem } = useLocalStorage("ongLogged");
@@ -52,7 +53,7 @@ const Doar = () => {
               {
                 allDonations.length > 0 ? (
                   allDonations.map((donation) => (
-                    <TableRow
+                    <OngTableRow
                     key={donation.donationID}
                     status={donation.status}
                     ongName={donation.ongName}
@@ -63,6 +64,8 @@ const Doar = () => {
                     donationID={donation.donationID}
                     setIsViewDonationModal={setIsViewDonationONG}
                     setIsViewDonationId={setIsViewDonationId}
+                    setIsUpdateDonationModal={setUpdateDonation}
+                    setIsUpdateDonationId={setIsUpdateDonationId}
                   />
                   ))
                 ) : (
@@ -198,6 +201,7 @@ const Doar = () => {
         <UpdateDonation
           isOpen={isUpdateDonation}
           onClose={() => setUpdateDonation(false)}
+          donationID={isUpdateDonationId}
         />
       </main>
     </div>

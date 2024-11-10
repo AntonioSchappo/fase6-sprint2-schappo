@@ -10,6 +10,8 @@
  * @property {string} donationID
  * @property {string} companyName
  * @property {string} companyCnpj
+ * @property {string} companyAddress
+ * @property {string} companyPhone
  * @property {string} ongName
  * @property {string} ongID
  * @property {"perecivel" | "nao-perecivel" | "ambos"} type

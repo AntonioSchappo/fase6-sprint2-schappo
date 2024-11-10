@@ -52,6 +52,8 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
                   ongEmail: ong.email,
                   companyName: business.fantasyName,
                   companyCnpj: business.cnpj,
+                  companyAddress: business.address,
+                  companyPhone: business.phone,
                 })
               }
             />

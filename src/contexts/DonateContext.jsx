@@ -18,6 +18,8 @@ export default function DonateProvider({ children }) {
       donationID: uuid(),
       companyName: donation.companyName,
       companyCnpj: donation.companyCnpj,
+      companyPhone: donation.companyPhone,
+      companyAddress: donation.companyAddress,
       ongName: donation.ongName,
       ongEmail: donation.ongEmail,
       ongID: donation.ongID,

@@ -32,9 +32,6 @@ export default function ViewDonationModal({ isOpen, onClose, donationID }) {
     onClose();
   }
 
-
-  console.log(donation.items);
-
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"

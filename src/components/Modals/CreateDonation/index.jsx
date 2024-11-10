@@ -6,9 +6,10 @@ import { Select } from "@/components/Select";
 import { useDonate } from "@/hooks/useDonate";
 
 export function CreateDonation({ isOpen, onClose, toggleList }) {
-  if (!isOpen) return null;
+
   const { createdDonation, setCreatedDonation } = useDonate();
 
+  if (!isOpen) return null;
   return (
     <div className="max-h-[50%] overflow-x-auto">
       <div

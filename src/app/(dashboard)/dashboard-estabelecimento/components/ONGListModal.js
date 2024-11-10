@@ -6,7 +6,7 @@ import { useDonate } from "@/hooks/useDonate";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
-  if (!isOpen) return null;
+
   const { createdDonation, setCreatedDonation, RegisterDonation } = useDonate();
   const { getItem } = useLocalStorage("ongs");
   const { getItem: getBussines } = useLocalStorage("businessLogged");
@@ -19,7 +19,7 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
     alert("Doação cadastrado com sucesso!");
     onClose();
   }
-
+  if (!isOpen) return null;
   return (
     <div
       onClick={(event) => {

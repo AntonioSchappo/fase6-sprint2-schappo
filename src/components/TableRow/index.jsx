@@ -36,7 +36,7 @@ export function TableRow({
   return (
     <>
       <tr className="bg-gray-100">
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center">
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
           <span
             className={`${statusColor} h-3 w-3 rounded-full inline-block mr-2`}
           ></span>
@@ -49,7 +49,7 @@ export function TableRow({
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
           <b>{formatedType}</b>
           <p>
-            {new Date(data).toLocaleDateString('pt-BR')} - {time}
+            {new Date(data).toLocaleDateString("pt-BR")} - {time}
           </p>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">

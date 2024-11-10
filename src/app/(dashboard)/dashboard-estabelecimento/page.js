@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import NewDonationModal from "./components/newDonationModal";
 import ONGListModal from "./components/ONGListModal";
 import ViewDonationModal from "./components/viewDonationModal";
 import { TableRow } from "@/components/TableRow";
 import { CreateDonation } from "@/components/Modals/CreateDonation";
 import { useDonate } from "@/hooks/useDonate";
-import { useLogin } from "@/hooks/useLogin";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { Button } from "@/components/Button";
 
 const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
@@ -54,12 +53,11 @@ const Doar = () => {
                   SOBRE A DOAÇÃO
                 </th>
                 <th className="py-3 border-b-2 border-gray-300 text-right text-sm font-semibold">
-                  <button
+                  <Button
                     onClick={() => setIsDonationModalOpen(true)}
-                    className="bg-orange-500 text-white text-base font-semibold py-2 px-6 rounded hover:bg-orange-600"
-                  >
-                    Nova Doação
-                  </button>
+                    text="Nova doação"
+                    className="-mr-0.5"
+                  />
                 </th>
               </tr>
             </thead>

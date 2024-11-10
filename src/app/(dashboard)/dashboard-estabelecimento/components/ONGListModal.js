@@ -14,8 +14,6 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
 
   const ongList = getItem() || [];
 
-  console.log(createdDonation);
-
   function createDonation() {
     RegisterDonation(createdDonation);
     alert("Doação cadastrado com sucesso!");
@@ -54,7 +52,6 @@ export default function ONGListModal({ isOpen, onClose, toggleDonation }) {
                   ongEmail: ong.email,
                   companyName: business.fantasyName,
                   companyCnpj: business.cnpj,
-                  items: "arroz",
                 })
               }
             />

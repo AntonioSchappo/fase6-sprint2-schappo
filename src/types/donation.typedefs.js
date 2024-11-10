@@ -12,7 +12,7 @@
  * @property {string} companyCnpj
  * @property {string} ongName
  * @property {string} ongID
- * @property {"perecivel" | "não-perecivel" | "ambos"} type
+ * @property {"perecivel" | "nao-perecivel" | "ambos"} type
  * @property {DonationItem[]} items
  * @property {string} data
  * @property {"em-aberto" | "processando" | "concluido" | "cancelado"} status

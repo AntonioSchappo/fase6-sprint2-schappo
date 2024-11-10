@@ -7,7 +7,7 @@ import { v4 as uuid } from "uuid";
 export const DonateContext = createContext({});
 
 export default function DonateProvider({ children }) {
-  const { setItems, getItem } = useLocalStorage("fome-zero-donations");
+  const { setItem ,setItems, getItem, removeItem } = useLocalStorage("fome-zero-donations");
   const [createdDonation, setCreatedDonation] = useState({});
   /**
    * @param {Donation} donation
@@ -78,7 +78,8 @@ export default function DonateProvider({ children }) {
       (donation) => donation.donationID === donationID
     );
     donations[donationIndex].status = status;
-    setItems(donations);
+    removeItem();
+    setItem(donations);
     return true;
   }
 

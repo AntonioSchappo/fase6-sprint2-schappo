@@ -49,7 +49,7 @@ export function TableRow({
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
           <b>{formatedType}</b>
           <p>
-            {data} - {time}
+            {new Date(data).toLocaleDateString('pt-BR')} - {time}
           </p>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-right">

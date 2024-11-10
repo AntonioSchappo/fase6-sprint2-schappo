@@ -4,24 +4,24 @@ import { useDonate } from "@/hooks/useDonate";
 import React, { useState } from "react";
 
 function FoodList() {
-  const [itens, setItens] = useState([
+  const [items, setItems] = useState([
     { nome: "", quantidade: "", unidade: "" },
   ]);
 
   const { createdDonation, setCreatedDonation } = useDonate();
 
   const handleChange = (index, campo, valor) => {
-    const novosItens = [...itens];
-    novosItens[index][campo] = valor;
-    setItens(novosItens);
+    const novosItems = [...items];
+    novosItems[index][campo] = valor;
+    setItems(novosItems);
 
-    if (index === itens.length - 1 && campo === "nome" && valor.trim() !== "") {
-      setItens([...itens, { nome: "", quantidade: "", unidade: "" }]);
+    if (index === items.length - 1 && campo === "nome" && valor.trim() !== "") {
+      setItems([...items, { nome: "", quantidade: "", unidade: "" }]);
     }
 
     setCreatedDonation({
       ...createdDonation,
-      itens: novosItens.map((item) => ({
+      items: novosItems.slice(0, -1).map((item) => ({
         nome: item.nome,
         quantidade: item.quantidade,
         unidade: item.unidade,
@@ -34,7 +34,7 @@ function FoodList() {
       <label className="text-black col-start-1 col-end-4">
         Lista de alimentos
       </label>
-      {itens.map((item, index) => (
+      {items.map((item, index) => (
         <React.Fragment key={index}>
           <input
             type="text"
@@ -57,9 +57,9 @@ function FoodList() {
             <option value="" disabled hidden>
               Unidade
             </option>
-            <option>Un.</option>
-            <option>Kg.</option>
-            <option>Lt.</option>
+            <option>Un</option>
+            <option>Kg</option>
+            <option>Lt</option>
           </select>
         </React.Fragment>
       ))}

@@ -8,8 +8,15 @@ export default function LoginOngView({ handleLogin, setEmail, setPassword }) {
   return (
     <div className="grid grid-cols-2 items-stretch overflow-hidden  font-nunito-sans">
       <div className="flex items-center justify-center text-[#191919] bg-[#191919]">
-        <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px]">
+        <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px] max-h-[90vh] overflow-auto">
+          <Link
+            href="/"
+            className="font-semibold text-sm text-gray-700 -mt-4 mb-4"
+          >
+            &lt; Voltar
+          </Link>
           <h1 className="text-4xl mb-6 font-bold">Área da ONG</h1>
+
           <form className="w-full flex flex-col" onSubmit={handleLogin}>
             <Input
               required

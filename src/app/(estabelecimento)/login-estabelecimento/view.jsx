@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 
-export default function LoginEstabelecimentoView ({
-    handleLogin,
-    setEmail,
-    setPassword
+export default function LoginEstabelecimentoView({
+  handleLogin,
+  setEmail,
+  setPassword,
 }) {
   return (
     <div className="grid grid-cols-2 bg-[#191919] font-nunito-sans">
@@ -19,31 +19,37 @@ export default function LoginEstabelecimentoView ({
         priority
       />
       <div id="login-card" className="flex items-center justify-center">
-        <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px] text-black">
-          <h1 className="text-4xl mb-6 font-bold">
+        <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px] text-black max-h-[90vh] overflow-auto">
+          <Link
+            href="/"
+            className="font-semibold text-sm text-gray-700 -mt-4 mb-4"
+          >
+            &lt; Voltar
+          </Link>
+          <h1 className="text-4xl mb-4 font-bold">
             Área do <br />
             estabelecimento
           </h1>
           <form className="flex flex-col" onSubmit={handleLogin}>
             <Input
-                required
-                label="E-mail"
-                type="text"
-                name="email"
-                id="email"
-                onChange={(e) => setEmail(e.target.value)}
-                className="border border-solid rounded-sm p-[16px] mb-[24px]"
-                placeholder="Insira seu e-mail"
+              required
+              label="E-mail"
+              type="text"
+              name="email"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+              className="border border-solid rounded-sm p-[16px] mb-[24px]"
+              placeholder="Insira seu e-mail"
             />
             <Input
-                required
-                label="Senha"
-                type="password"
-                name="password"
-                id="password"
-                onChange={(e) => setPassword(e.target.value)}
-                className="border border-solid rounded-sm p-[16px] mb-[24px]"
-                placeholder="Insira sua senha"
+              required
+              label="Senha"
+              type="password"
+              name="password"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+              className="border border-solid rounded-sm p-[16px] mb-[24px]"
+              placeholder="Insira sua senha"
             />
             <div className="flex flex-row justify-end items-center my-4">
               <svg
@@ -64,12 +70,12 @@ export default function LoginEstabelecimentoView ({
               </a>
             </div>
             <Button
-                type="submit"
-                text="Entrar"
-                variant="primary"
-                className="w-full"
-             />
-            
+              type="submit"
+              text="Entrar"
+              variant="primary"
+              className="w-full"
+            />
+
             <div className="self-center mt-4">
               <Link href="/cadastrar-estabelecimento">
                 <p className="font-light">

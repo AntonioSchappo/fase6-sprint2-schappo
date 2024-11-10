@@ -14,8 +14,14 @@ export default function CadastrarEstabelecimentoView({
   return (
     <div className="h-screen w-screen overflow-y-auto grid grid-cols-2 justify-between bg-[#191919] font-nunito-sans">
       <div className="text-[#0D0E30] flex justify-center items-center">
-        <div className="w-[488px] h-fit bg-white rounded-md p-8">
-          <h1 className="text-[40px] font-bold leading-none ">
+        <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px] text-black max-h-[90vh] overflow-auto">
+          <Link
+            href="/"
+            className="font-semibold text-sm text-gray-700 -mt-4 mb-4"
+          >
+            &lt; Voltar
+          </Link>
+          <h1 className="text-4xl mb-4 font-bold">
             Cadastrar
             <br />
             estabelecimento
@@ -31,7 +37,7 @@ export default function CadastrarEstabelecimentoView({
               }
             />
 
-            <Input 
+            <Input
               label="CNPJ"
               id="cnpj"
               mask="99.999.999/9999-99"
@@ -40,7 +46,7 @@ export default function CadastrarEstabelecimentoView({
               onChange={(e) =>
                 setInstitution({ ...institution, cnpj: e.target.value })
               }
-            /> 
+            />
 
             <Select
               label="Tipo de estabelecimento"

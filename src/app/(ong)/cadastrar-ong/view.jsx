@@ -14,7 +14,13 @@ export default function CadastrarOngView({ handleRegister, ong, setOng }) {
         priority
       />
       <div className="flex items-center justify-center text-[#191919] bg-[#191919]">
-        <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px]">
+        <div className="bg-white rounded-lg w-[488px] flex flex-col p-[36px] max-h-[90vh] overflow-auto">
+          <Link
+            href="/"
+            className="font-semibold text-sm text-gray-700 -mt-4 mb-4"
+          >
+            &lt; Voltar
+          </Link>
           <h1 className="text-4xl mb-6 font-bold">Cadastrar ONG</h1>
           <form className="w-full flex flex-col" onSubmit={handleRegister}>
             <Input

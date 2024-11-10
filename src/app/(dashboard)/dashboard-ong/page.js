@@ -5,49 +5,34 @@ import Link from "next/link";
 import { useState } from "react";
 import ViewDonationONG from "./components/viewDonationONG";
 import UpdateDonation from "./components/updateDonation";
+import { CreateDonation } from "@/components/Modals/CreateDonation";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useDonate } from "@/hooks/useDonate";
+import { OngTableRow } from "@/components/OngTableRow";
+
+
+
 
 const Doar = () => {
   const [isViewDonationONG, setIsViewDonationONG] = useState(false);
+  const [isViewDonationId, setIsViewDonationId] = useState("");
   const [isUpdateDonation, setUpdateDonation] = useState(false);
+  const [isUpdateDonationId, setIsUpdateDonationId] = useState("");	
+
+
+  const { getItem } = useLocalStorage("ongLogged");
+  const ong = getItem();
+
+  const { GetDonationsByOng } = useDonate();
+  const allDonations = GetDonationsByOng(ong.id);
+
 
   return (
     <div className="h-screen w-screen overflow-y-auto flex flex-col justify-between relative">
-      <nav className="absolute top-0 left-0 w-full z-20 py-4 bg-black">
-        <div className="container mx-auto flex justify-between items-center">
-          <div>
-            <Link href="/user">
-              <Image
-                src="/assets/images/avatar.svg"
-                width={30}
-                height={30}
-                alt="Usuário"
-              />
-            </Link>
-          </div>
-          <Link href="/">
-            <Image
-              src="/assets/images/fome-zero-logo.png"
-              width={53}
-              height={58}
-              alt="Fome Zero"
-            />
-          </Link>
-          <div>
-            <Link href="/doar">
-              <Image
-                src="/assets/images/logout.svg"
-                width={36}
-                height={36}
-                alt="Sair"
-              />
-            </Link>
-          </div>
-        </div>
-      </nav>
 
       <main className="flex-1 pt-20">
         <div className="pt-14 flex flex-col items-center bg-white w-full h-full">
-          <h1 className="text-black text-4xl font-bold">ONG EXEMPLO</h1>
+          <h1 className="text-black text-4xl font-bold">{ong.name}</h1>
           <p className="text-black text-xl pb-12 pt-4">Lista de Doações</p>
 
           <table className="w-4/5">
@@ -65,6 +50,29 @@ const Doar = () => {
               </tr>
             </thead>
             <tbody>
+              {
+                allDonations.length > 0 ? (
+                  allDonations.map((donation) => (
+                    <OngTableRow
+                    key={donation.donationID}
+                    status={donation.status}
+                    ongName={donation.ongName}
+                    ongEmail={donation.ongEmail}
+                    type={donation.type}
+                    data={donation.data}
+                    time={donation.time}
+                    donationID={donation.donationID}
+                    setIsViewDonationModal={setIsViewDonationONG}
+                    setIsViewDonationId={setIsViewDonationId}
+                    setIsUpdateDonationModal={setUpdateDonation}
+                    setIsUpdateDonationId={setIsUpdateDonationId}
+                  />
+                  ))
+                ) : (
+                <tr className="text-center text-2xl text-black font-semibold">
+                  <td>Nenhuma doação encontrada</td>
+                </tr>)
+              }
               <tr className="bg-gray-100 border-t-2 border-gray-300">
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600 flex items-center">
                   <span className="bg-blue-500 h-3 w-3 rounded-full inline-block mr-2"></span>
@@ -188,10 +196,12 @@ const Doar = () => {
         <ViewDonationONG
           isOpen={isViewDonationONG}
           onClose={() => setIsViewDonationONG(false)}
+          donationID={isViewDonationId}
         />
         <UpdateDonation
           isOpen={isUpdateDonation}
           onClose={() => setUpdateDonation(false)}
+          donationID={isUpdateDonationId}
         />
       </main>
     </div>

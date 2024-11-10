@@ -1,10 +1,18 @@
 "use client";
+import { useDonate } from "@/hooks/useDonate";
 
 import Image from "next/image";
 
 // PARA CANCELAR A DOAÇÃO
-export default function UpdateDonation({ isOpen, onClose }) {
+export default function UpdateDonation({ isOpen, onClose, donationID }) {
   if (!isOpen) return null;
+  const { GetDonation, UpdateDonationStatus } = useDonate();
+  const donation = GetDonation(donationID);
+  
+  const handleConclude = () => {
+    UpdateDonationStatus(donationID, "concluido");
+    onClose();
+  };
 
   return (
     <div
@@ -57,19 +65,26 @@ export default function UpdateDonation({ isOpen, onClose }) {
 
         <div className="text-black pl-[30px] mb-12">
           <p className="font-bold">INFORMAÇÕES DO ESTABELECIMENTO</p>
-          <p className="font-semibold">Amigos do Schappo</p>
-          <p className="">(11) 99999-9999</p>
-          <p className="">Rua Libre, 4571</p>
-          <p className="font-semibold">15h30 - 23/11/2024</p>
+          <p className="font-semibold">{donation.companyName}</p>
+          <p className="">{donation.companyPhone}</p>
+          <p className="">{donation.companyAddress}</p>
+          <p className="font-semibold"> {new Date(donation.data).toLocaleDateString('pt-BR')} - {donation.time}</p>
         </div>
 
         <div className="mb-4 flex items-center justify-end gap-4 pr-[10px]">
           <button className="bg-white font-semibold text-[#FF9800] border border-solid border-[#FF9800] py-2 px-6 rounded hover:text-orange-600 hover:border-orange-600">
             IMPRIMIR
           </button>
-          <button className="bg-[#FF9800] font-semibold text-white py-2 px-8 rounded hover:bg-orange-600">
-            CONCLUIR DOAÇÃO
-          </button>
+          {
+            donation.status === "em-aberto" && (
+              <button
+                className="bg-[#FF9800] font-semibold text-white py-2 px-8 rounded hover:bg-orange-600"
+                onClick={handleConclude}>
+                CONCLUIR DOAÇÃO
+              </button>
+            )
+          }
+
         </div>
       </div>
     </div>

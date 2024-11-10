@@ -1,14 +1,14 @@
 "use client";
 
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { v4 as uuid } from "uuid";
 
 export const DonateContext = createContext({});
 
 export default function DonateProvider({ children }) {
-  const { setItems, getItem } = useLocalStorage("fome-zero-donations");
-
+  const { setItem ,setItems, getItem, removeItem } = useLocalStorage("fome-zero-donations");
+  const [createdDonation, setCreatedDonation] = useState({});
   /**
    * @param {Donation} donation
    * @returns {boolean}
@@ -18,11 +18,15 @@ export default function DonateProvider({ children }) {
       donationID: uuid(),
       companyName: donation.companyName,
       companyCnpj: donation.companyCnpj,
+      companyPhone: donation.companyPhone,
+      companyAddress: donation.companyAddress,
       ongName: donation.ongName,
+      ongEmail: donation.ongEmail,
       ongID: donation.ongID,
       type: donation.type,
       items: donation.items,
       data: donation.data,
+      time: donation.time,
       status: "em-aberto",
     };
 
@@ -35,7 +39,7 @@ export default function DonateProvider({ children }) {
    * @returns {Donation}
    */
   function GetDonation(donationID) {
-    const donations = getItem();
+    const donations = getItem() || [];
     return donations.find((donation) => donation.donationID === donationID);
   }
 
@@ -44,7 +48,7 @@ export default function DonateProvider({ children }) {
    * @returns {Donation}
    */
   function GetDonationsByOng(ongID) {
-    const donations = getItem();
+    const donations = getItem() || [];
     return donations.filter((donation) => donation.ongID === ongID);
   }
 
@@ -53,8 +57,16 @@ export default function DonateProvider({ children }) {
    * @returns {Donation}
    */
   function GetDonationsByCompany(companyCnpj) {
-    const donations = getItem();
-    return donations.filter((donation) => donation.companyCnpj === companyCnpj);
+    const donations = getItem() || [];
+    const NonOrderedDonations = donations.filter(
+      (donation) => donation.companyCnpj === companyCnpj
+    );
+
+    return NonOrderedDonations.sort((a, b) => {
+      const dateA = new Date(`${a.data}T${a.time}`);
+      const dateB = new Date(`${b.data}T${b.time}`);
+      return dateB - dateA;
+    });
   }
 
   /**
@@ -68,7 +80,8 @@ export default function DonateProvider({ children }) {
       (donation) => donation.donationID === donationID
     );
     donations[donationIndex].status = status;
-    setItems(donations);
+    removeItem();
+    setItem(donations);
     return true;
   }
 
@@ -80,6 +93,8 @@ export default function DonateProvider({ children }) {
         GetDonationsByCompany,
         GetDonationsByOng,
         UpdateDonationStatus,
+        setCreatedDonation,
+        createdDonation,
       }}
     >
       {children}

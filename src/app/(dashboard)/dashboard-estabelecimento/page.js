@@ -6,8 +6,8 @@ import ViewDonationModal from "./components/viewDonationModal";
 import { TableRow } from "@/components/TableRow";
 import { CreateDonation } from "@/components/Modals/CreateDonation";
 import { useDonate } from "@/hooks/useDonate";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Button } from "@/components/Button";
+import { useLogin } from "@/hooks/useLogin";
 
 const Doar = () => {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
@@ -15,8 +15,7 @@ const Doar = () => {
   const [isViewDonationModal, setIsViewDonationModal] = useState(false);
   const [isViewDonationId, setIsViewDonationId] = useState("");
 
-  const { getItem } = useLocalStorage("businessLogged");
-  const business = getItem();
+  const { business } = useLogin();
 
   const { GetDonationsByCompany } = useDonate();
   const allDonations = GetDonationsByCompany(business.cnpj);
@@ -78,8 +77,10 @@ const Doar = () => {
                   />
                 ))
               ) : (
-                <tr className="text-center text-2xl text-black font-semibold">
-                  <td>Nenhuma doação encontrada</td>
+                <tr className="text-center text-2xl text-gray-500 font-semibold">
+                  <td colSpan="5" className="pt-5">
+                    Nenhuma doação cadastrada! 😥
+                  </td>
                 </tr>
               )}
             </tbody>

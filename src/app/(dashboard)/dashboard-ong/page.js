@@ -6,22 +6,17 @@ import UpdateDonation from "./components/updateDonation";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useDonate } from "@/hooks/useDonate";
 import { OngTableRow } from "@/components/OngTableRow";
+import { useLogin } from "@/hooks/useLogin";
 
 const Doar = () => {
   const [isViewDonationONG, setIsViewDonationONG] = useState(false);
   const [isViewDonationId, setIsViewDonationId] = useState("");
   const [isUpdateDonation, setUpdateDonation] = useState(false);
   const [isUpdateDonationId, setIsUpdateDonationId] = useState("");
-  const [allDonations, setAllDonations] = useState([]);
 
-  const { getItem } = useLocalStorage("ongLogged");
+  const { ong } = useLogin();
   const { GetDonationsByOng } = useDonate();
-
-  const ong = getItem();
-
-  useEffect(() => {
-    setAllDonations(GetDonationsByOng(ong.id));
-  }, []);
+  const allDonations = GetDonationsByOng(ong.id);
 
   return (
     <div className="h-screen w-screen overflow-y-auto flex flex-col justify-between relative">

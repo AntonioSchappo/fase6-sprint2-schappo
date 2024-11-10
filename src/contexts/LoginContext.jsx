@@ -130,6 +130,7 @@ export default function LoginProvider({ children }) {
     const token = window.localStorage.getItem("businessLogged");
     if (token) {
       setIsBusinessLoggedIn(true);
+      setBusinessLogged(JSON.parse(token));
     }
   }, []);
 
@@ -137,6 +138,7 @@ export default function LoginProvider({ children }) {
     const token = window.localStorage.getItem("ongLogged");
     if (token) {
       setIsOngLoggedIn(true);
+      setOngLogged(JSON.parse(token));
     }
   }, []);
 

@@ -39,7 +39,7 @@ export default function DonateProvider({ children }) {
    * @returns {Donation}
    */
   function GetDonation(donationID) {
-    const donations = getItem();
+    const donations = getItem() || [];
     return donations.find((donation) => donation.donationID === donationID);
   }
 
@@ -48,7 +48,7 @@ export default function DonateProvider({ children }) {
    * @returns {Donation}
    */
   function GetDonationsByOng(ongID) {
-    const donations = getItem();
+    const donations = getItem() || [];
     return donations.filter((donation) => donation.ongID === ongID);
   }
 

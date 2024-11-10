@@ -76,7 +76,7 @@ export default function LoginProvider({ children }) {
     setIsOngLoggedIn(true);
     setOngLogged(ongToLog);
     setItem(ongToLog);
-    return isOngLoggedIn;
+    return true;
   }
 
   function LogoutOng() {
